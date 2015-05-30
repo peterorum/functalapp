@@ -39,32 +39,17 @@
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-        // setup an abstract state for the tabs directive
-            .state('tab',
-        {
-            url: "/tab",
-            abstract: true,
-            templateUrl: "templates/tabs.html"
-        })
-
-        // Each tab has its own nav history stack:
-
-        .state('tab.images',
+        .state('images',
         {
             url: '/images',
-            views:
-            {
-                'tab-images':
-                {
-                    templateUrl: 'templates/tab-images.html',
-                    controller: 'ImagesCtrl'
-                }
-            }
+            templateUrl: 'templates/images.html',
+            controller: 'ImagesCtrl'
+
         });
 
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/images');
+        $urlRouterProvider.otherwise('/images');
 
     });
 
