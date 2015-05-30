@@ -81,7 +81,7 @@
 
             $scope.showCount = 6;
 
-            $scope.sorter = 'desc';
+            $scope.sorter = 'shuffle';
 
             getImages();
         }
