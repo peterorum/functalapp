@@ -1,0 +1,14 @@
+<ion-view view-title="Daily Functal">
+    <ion-content class="padding text-center">
+        <h2>Latest Functals</h2>
+        <div class="list card" ng-repeat="image in images | limitTo : showCount">
+            <div class="item item-body">
+                <div>
+                    <img class="img-responsive" ng-src="{{cdn}}{{image}}" />
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll on-infinite="showMore()" distance="1%" immediate-check='false'>
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
