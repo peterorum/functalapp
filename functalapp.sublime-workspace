@@ -520,43 +520,13 @@
 	"buffers":
 	[
 		{
-			"file": "www/css/style.css",
+			"contents": "Searching 675 files for \"triad\"\n\n0 matches",
 			"settings":
 			{
-				"buffer_size": 201,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/images.html",
-			"settings":
-			{
-				"buffer_size": 915,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/controllers.js",
-			"settings":
-			{
-				"buffer_size": 987,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/index.html",
-			"settings":
-			{
-				"buffer_size": 1308,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/app.js",
-			"settings":
-			{
-				"buffer_size": 1772,
-				"line_ending": "Unix"
+				"buffer_size": 42,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
 			}
 		}
 	],
@@ -804,6 +774,9 @@
 	"expanded_folders":
 	[
 		"/Users/peterorum/Projects/functalapp",
+		"/Users/peterorum/Projects/functalapp/bower_components/ramda",
+		"/Users/peterorum/Projects/functalapp/bower_components/ramda/dist",
+		"/Users/peterorum/Projects/functalapp/bower_components/ramda/lib",
 		"/Users/peterorum/Projects/functalapp/www",
 		"/Users/peterorum/Projects/functalapp/www/css",
 		"/Users/peterorum/Projects/functalapp/www/img",
@@ -811,25 +784,31 @@
 		"/Users/peterorum/Projects/functalapp/www/lib",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/css",
+		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js",
 		"/Users/peterorum/Projects/functalapp/www/templates"
 	],
 	"file_history":
 	[
+		"/Users/peterorum/Projects/functalapp/config.xml",
+		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
+		"/Users/peterorum/Projects/functalapp/www/index.html",
+		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
+		"/Users/peterorum/Projects/functalapp/platforms/ios/Daily Functal/Classes/AppDelegate.m",
+		"/Users/peterorum/Downloads/temp..ypjgkwmg.txt",
+		"/Users/peterorum/Projects/functalapp/platforms/platforms.json",
+		"/Users/peterorum/Projects/functalapp/ionic.project",
+		"/Users/peterorum/Projects/functalapp/www/css/style.css",
+		"/Users/peterorum/Projects/functalapp/www/js/app.js",
+		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic.bundle.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/css/ionic.css",
 		"/Users/peterorum/Projects/functalapp/www/templates/tabs.html",
 		"/Users/peterorum/Projects/functalapp/www/js/services.js",
-		"/Users/peterorum/Projects/functalapp/www/js/app.js",
-		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
 		"/Users/peterorum/Projects/functalapp/www/templates/tab-images.html",
-		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Projects/functalapp/www/templates/tab-random.html",
 		"/Users/peterorum/Projects/functalapp/www/templates/tab-new.html",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic-angular.js",
-		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic.bundle.js",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/build/emulator/functalapp.app/www/templates/tab-dash.html",
 		"/Users/peterorum/Projects/functalapp/package.json",
-		"/Users/peterorum/Projects/functalapp/ionic.project",
-		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/bower.json",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/build/emulator/functal-app.app/config.xml",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/build/functal-app.build/Debug-iphonesimulator/functal-app.build/Objects-normal/i386/AppDelegate.d",
@@ -937,12 +916,7 @@
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042942248.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042518027.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042342914.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042528849.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523031227742.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523035106608.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523035218855.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523023232383.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523024843938.json"
+		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042528849.json"
 	],
 	"find":
 	{
@@ -972,6 +946,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"triad",
+			"port",
+			"com.ionicframework.functalapp677966",
+			"sortBy",
 			"%'>",
 			"width: 100%",
 			"align",
@@ -1095,11 +1073,7 @@
 			"000",
 			"mindist",
 			"min",
-			"int.",
-			"minDistance",
-			"modifier",
-			"palette.colors.length",
-			"bandColor"
+			"int."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1184,16 +1158,15 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/css/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 201,
+						"buffer_size": 42,
 						"regions":
 						{
 						},
@@ -1206,148 +1179,23 @@
 						],
 						"settings":
 						{
+							"default_dir": "/Users/peterorum/Projects/functalapp",
+							"detect_indentation": false,
 							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/LESS/LESS.tmLanguage"
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/templates/images.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 915,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								720,
-								720
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/controllers.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 987,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								333,
-								333
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 74.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1308,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1772,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1129,
-								1129
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 175.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1417,6 +1265,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"im",
+				"www/templates/images.html"
+			],
+			[
+				"inde",
+				"www/index.html"
+			],
 			[
 				"index",
 				"www/index.html"
