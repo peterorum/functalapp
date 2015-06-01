@@ -5,7 +5,15 @@
     max-width: 100%;
 }
 
+.title
+{
+    padding-top:7px;
+}
 
-h1, h2, .bar .title {
+h1, h2, h3, h4, h5, .bar .title, span, div, p {
     font-family: 'Open Sans', sans-serif;
+}
+
+.icon-large {
+    font-size:200%;
 }

@@ -3,7 +3,13 @@
         <div id="top"></div>
         <div class="list card" ng-repeat="image in images | limitTo : showCount">
             <div class="item item-body">
-                <img class="img-responsive" ng-src="{{cdn}}{{image}}" />
+                <div>
+                    <img class="img-responsive" ng-src="{{cdn}}{{image.name}}" />
+                </div>
+                <div class='text-left'>
+                    <span class='icon-large ion-ios-download-outline' ng-show='! image.status' ng-click='save(image);'></span>
+                    <span> {{image.status}}</span>
+                </div>
             </div>
         </div>
         <ion-infinite-scroll on-infinite="showMore()" distance="1%" immediate-check='false'>
@@ -13,7 +19,8 @@
         <div style='width:100%'>
             <div class="buttons">
                 <!-- <button class="button" ng-class='{"button-positive" : sorter === "desc"}' ng-click='sortBy("desc")'>Latest</button> -->
-                <button class="button" ng-class='{"button-positive" : sorter === "shuffle"}' ng-click='sortBy("shuffle")'>Shuffle</button>
+                <button class="button" ng-click='sortBy("shuffle")'>Shuffle</button>
+                <!-- <button class="button" ng-click='test()'>Test</button> -->
             </div>
         </div>
     </ion-footer-bar>
