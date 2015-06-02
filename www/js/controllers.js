@@ -89,6 +89,8 @@
 
             $scope.sorter = 'shuffle';
 
+            $scope.images = [];
+
             getImages();
 
             // ---------------- save to camera roll
