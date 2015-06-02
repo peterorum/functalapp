@@ -1,6 +1,7 @@
 <ion-view view-title="Daily Functal">
     <ion-content class="padding text-center">
         <div id="top"></div>
+        <h2 ng-show="! images.length">Loading...</h2>
         <div class="list card" ng-repeat="image in images | limitTo : showCount">
             <div class="item item-body">
                 <div>
