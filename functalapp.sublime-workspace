@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ba",
+				"base64Img"
+			],
+			[
 				"get",
 				"getIntensity"
 			],
@@ -42,10 +46,6 @@
 			[
 				"sh",
 				"showCount"
-			],
-			[
-				"ba",
-				"bandomInt"
 			],
 			[
 				"fu",
@@ -520,13 +520,35 @@
 	"buffers":
 	[
 		{
-			"contents": "Searching 675 files for \"triad\"\n\n0 matches",
+			"file": "www/templates/images.html",
 			"settings":
 			{
-				"buffer_size": 42,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
+				"buffer_size": 1343,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/css/style.css",
+			"settings":
+			{
+				"buffer_size": 295,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 4351,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.xml",
+			"settings":
+			{
+				"buffer_size": 3134,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -774,9 +796,7 @@
 	"expanded_folders":
 	[
 		"/Users/peterorum/Projects/functalapp",
-		"/Users/peterorum/Projects/functalapp/bower_components/ramda",
-		"/Users/peterorum/Projects/functalapp/bower_components/ramda/dist",
-		"/Users/peterorum/Projects/functalapp/bower_components/ramda/lib",
+		"/Users/peterorum/Projects/functalapp/resources",
 		"/Users/peterorum/Projects/functalapp/www",
 		"/Users/peterorum/Projects/functalapp/www/css",
 		"/Users/peterorum/Projects/functalapp/www/img",
@@ -790,14 +810,14 @@
 	"file_history":
 	[
 		"/Users/peterorum/Projects/functalapp/config.xml",
-		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/index.html",
+		"/Users/peterorum/Projects/functalapp/www/css/style.css",
+		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/Daily Functal/Classes/AppDelegate.m",
 		"/Users/peterorum/Downloads/temp..ypjgkwmg.txt",
 		"/Users/peterorum/Projects/functalapp/platforms/platforms.json",
 		"/Users/peterorum/Projects/functalapp/ionic.project",
-		"/Users/peterorum/Projects/functalapp/www/css/style.css",
 		"/Users/peterorum/Projects/functalapp/www/js/app.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic.bundle.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/css/ionic.css",
@@ -946,6 +966,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Base64DataURL",
 			"triad",
 			"port",
 			"com.ionicframework.functalapp677966",
@@ -1072,8 +1093,7 @@
 			"accept",
 			"000",
 			"mindist",
-			"min",
-			"int."
+			"min"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1158,44 +1178,137 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "www/templates/images.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 42,
+						"buffer_size": 1343,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								149,
+								149
 							]
 						],
 						"settings":
 						{
-							"default_dir": "/Users/peterorum/Projects/functalapp",
-							"detect_indentation": false,
 							"incomplete_sync": null,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 295,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								258,
+								258
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2060,
+								2060
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 949.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1476,7 +1589,7 @@
 		[
 			[
 				"",
-				"~/Projects/functal/functal.sublime-project"
+				"~/Projects/data-hmm/data-hmm.sublime-project"
 			],
 			[
 				"book",
