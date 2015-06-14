@@ -8,6 +8,8 @@
     module.controller('ImagesCtrl', ['functalData', '$interval', '$scope', '$ionicScrollDelegate',
         function(functalData, $interval, $scope, $ionicScrollDelegate)
         {
+            //--- get images
+
             var getImages = function()
             {
                 functalData.getImages().then(function(result)
@@ -22,9 +24,27 @@
                 });
             };
 
+            //--- reload 5 minutes since last action
+
+            var resetReloader = function()
+            {
+                if ($scope.reloadTimer)
+                {
+                    $interval.cancel($scope.reloadTimer);
+                }
+
+                $scope.reloadTimer = $interval(function()
+                {
+                    console.log('reload');
+
+                    getImages();
+                }, 5 * 60000);
+            };
+
+            //--- sort
+
             var sort = function()
             {
-
                 $scope.images = R.sort(function(a, b)
                 {
                     switch ($scope.sorter)
@@ -48,10 +68,17 @@
                 }, $scope.images);
             };
 
+            //--- goto top of screen
+
             $scope.gotoTop = function()
             {
                 $window.location.href = '#top';
+
+                resetReloader();
+
             };
+
+            //--- infinite scroll
 
             $scope.showMore = function()
             {
@@ -60,7 +87,11 @@
                 console.log('showmore', $scope.showCount);
 
                 $scope.$broadcast('scroll.infiniteScrollComplete');
+
+                resetReloader();
             };
+
+            //--- user sort
 
             $scope.sortBy = function(sorter)
             {
@@ -71,27 +102,10 @@
                 $scope.showCount = 6;
 
                 $ionicScrollDelegate.scrollTop();
+
+                resetReloader();
+
             };
-
-            // reload
-
-            $interval(function()
-            {
-                getImages();
-            }, 5 * 60000);
-
-            // init
-
-            $scope.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
-            $scope.s3 = 'https://s3.amazonaws.com/functal-images/';
-
-            $scope.showCount = 6;
-
-            $scope.sorter = 'shuffle';
-
-            $scope.images = [];
-
-            getImages();
 
             // ---------------- save to camera roll
 
@@ -99,8 +113,7 @@
             {
                 image.status = 'saving to your photos...';
 
-                // todo - keep testing with cdn to see if cors overcome
-                var url = $scope.s3 + image.name;
+                var url = $scope.cdn + image.name;
 
                 convertImgToBase64URL(url, function(base64DataURL)
                 {
@@ -116,6 +129,9 @@
 
                     });
                 }, 'image/jpeg');
+
+                resetReloader();
+
             };
 
             /**
@@ -126,6 +142,10 @@
              * @param  {String}   [outputFormat=image/jpeg]
              * http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
              */
+
+             // cors test example
+             // curl -sI -H "Origin: codeindeed.com" -H "Access-Control-Request-Method: GET" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg
+
             function convertImgToBase64URL(url, callback, outputFormat)
             {
                 var img = new Image();
@@ -144,6 +164,20 @@
                 };
                 img.src = url;
             }
+
+            //----------------- init
+
+            $scope.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
+
+            $scope.showCount = 6;
+
+            $scope.sorter = 'shuffle';
+
+            $scope.images = [];
+
+            getImages();
+
+            resetReloader();
         }
     ]);
 })();
