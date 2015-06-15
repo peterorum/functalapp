@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"re",
+				"resetReloader"
+			],
+			[
 				"ba",
 				"base64Img"
 			],
@@ -134,10 +138,6 @@
 			[
 				"isD",
 				"isDev"
-			],
-			[
-				"re",
-				"result"
 			],
 			[
 				"f",
@@ -519,38 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "www/templates/images.html",
-			"settings":
-			{
-				"buffer_size": 1343,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/style.css",
-			"settings":
-			{
-				"buffer_size": 295,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/controllers.js",
-			"settings":
-			{
-				"buffer_size": 4351,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config.xml",
-			"settings":
-			{
-				"buffer_size": 3134,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -809,11 +777,12 @@
 	],
 	"file_history":
 	[
-		"/Users/peterorum/Projects/functalapp/config.xml",
-		"/Users/peterorum/Projects/functalapp/www/index.html",
-		"/Users/peterorum/Projects/functalapp/www/css/style.css",
-		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
+		"/Users/peterorum/Projects/functalapp/www/css/style.css",
+		"/Users/peterorum/Projects/functalapp/config.xml",
+		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
+		"/Users/peterorum/Projects/functalapp/www/css/fonts.css",
+		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/Daily Functal/Classes/AppDelegate.m",
 		"/Users/peterorum/Downloads/temp..ypjgkwmg.txt",
 		"/Users/peterorum/Projects/functalapp/platforms/platforms.json",
@@ -935,8 +904,7 @@
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523043126751.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042942248.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042518027.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042342914.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042528849.json"
+		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042342914.json"
 	],
 	"find":
 	{
@@ -966,6 +934,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"s3",
+			"resetReloader",
+			"geti",
+			"http://fonts.gstatic.com/s/opensans/v13/K88pR3goAWT7BTt32Z01m4X0hVgzZQUfRDuZrPvH3D8",
+			"local('Open Sans'), local('OpenSans'), ",
 			"Base64DataURL",
 			"triad",
 			"port",
@@ -1088,12 +1061,7 @@
 			"minstd",
 			"///",
 			"1431350064725",
-			"1431349826378",
-			"stddev",
-			"accept",
-			"000",
-			"mindist",
-			"min"
+			"1431349826378"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1178,139 +1146,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "www/templates/images.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1343,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								149,
-								149
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 295,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258,
-								258
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4351,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2060,
-								2060
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 949.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "config.xml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3134,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								107,
-								107
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1589,7 +1426,7 @@
 		[
 			[
 				"",
-				"~/Projects/data-hmm/data-hmm.sublime-project"
+				"~/Projects/photoshow/photoshow.sublime-project"
 			],
 			[
 				"book",
