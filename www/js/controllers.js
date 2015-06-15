@@ -5,13 +5,17 @@
 
     var module = angular.module('functal.controllers', []);
 
-    module.controller('ImagesCtrl', ['functalData', '$interval', '$scope', '$ionicScrollDelegate',
-        function(functalData, $interval, $scope, $ionicScrollDelegate)
+    module.controller('ImagesCtrl', ['functalData', '$interval', '$scope', '$ionicScrollDelegate', '$ionicLoading',
+        function(functalData, $interval, $scope, $ionicScrollDelegate, $ionicLoading)
         {
             //--- get images
 
             var getImages = function()
             {
+                $ionicLoading.show({
+                      template: 'Loading...'
+                    });
+
                 functalData.getImages().then(function(result)
                 {
                     $scope.images = R.map(function(i)
@@ -20,7 +24,10 @@
                             name: i
                         };
                     }, result.data.images);
+
                     sort();
+
+                    $ionicLoading.hide();
                 });
             };
 
