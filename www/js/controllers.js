@@ -5,8 +5,8 @@
 
     var module = angular.module('functal.controllers', []);
 
-    module.controller('ImagesCtrl', ['functalData', '$interval', '$scope', '$ionicScrollDelegate', '$ionicLoading',
-        function(functalData, $interval, $scope, $ionicScrollDelegate, $ionicLoading)
+    module.controller('ImagesCtrl', ['functalData', '$interval', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing',
+        function(functalData, $interval, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing)
         {
             //--- get images
 
@@ -14,7 +14,7 @@
             {
                 $ionicLoading.show(
                 {
-                    template: 'Loading...'
+                    template: 'loading...'
                 });
 
                 functalData.getImages().then(function(result)
@@ -53,7 +53,7 @@
 
             var clearStatus = function(image)
             {
-                $interval(function()
+                $timeout(function()
                 {
                     image.status = '';
                 }, 3000);
@@ -132,7 +132,7 @@
                 CameraRoll.saveToCameraRoll(base64DataURL, function()
                 {
                     image.saved = true;
-                    image.status = 'saved';
+                    image.status = 'saved to your photos';
                     clearStatus(image);
                     $scope.$apply();
 
@@ -233,20 +233,34 @@
 
             //-------------- sharing
 
-            $scope.shareAnywhere = function()
+            $scope.shareAnywhere = function(image)
             {
-                $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "http://blog.nraboy.com");
-            };
+                if (!/sharing/.test(image.status))
+                {
+                    image.status = 'loading sharing...';
 
-            $scope.shareViaTwitter = function(message, image, link)
-            {
-                $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result)
-                {
-                    $cordovaSocialSharing.shareViaTwitter(message, image, link);
-                }, function(error)
-                {
-                    alert("Cannot share on Twitter");
-                });
+                    $ionicLoading.show(
+                    {
+                        template: 'share...'
+                    });
+
+                    $timeout(function()
+                    {
+                        var imageUrl = $scope.cdn + image.name;
+
+                        $cordovaSocialSharing.share("#functal", null, imageUrl, null).then(function(result)
+                        {
+                            $ionicLoading.hide();
+                            image.status = '';
+                            console.log('sharing result', result);
+                        }, function(err)
+                        {
+                            $ionicLoading.hide();
+                            image.status = '';
+                            console.log('sharing error', err);
+                        });
+                    }, 0);
+                }
             };
 
             //----------------- init
