@@ -12,9 +12,10 @@
 
             var getImages = function()
             {
-                $ionicLoading.show({
-                      template: 'Loading...'
-                    });
+                $ionicLoading.show(
+                {
+                    template: 'Loading...'
+                });
 
                 functalData.getImages().then(function(result)
                 {
@@ -46,6 +47,16 @@
 
                     getImages();
                 }, 5 * 60000);
+            };
+
+            //--- clear status after a while
+
+            var clearStatus = function(image)
+            {
+                $interval(function()
+                {
+                    image.status = '';
+                }, 3000);
             };
 
             //--- sort
@@ -116,25 +127,58 @@
 
             // ---------------- save to camera roll
 
+            var saveToCameraRoll = function(base64DataURL, image)
+            {
+                CameraRoll.saveToCameraRoll(base64DataURL, function()
+                {
+                    image.saved = true;
+                    image.status = 'saved';
+                    clearStatus(image);
+                    $scope.$apply();
+
+                }, function(err)
+                {
+                    image.error = 'Error : ' + err;
+                    $scope.$apply();
+
+                });
+            };
+
             $scope.save = function(image)
             {
                 image.status = 'saving to your photos...';
 
                 var url = $scope.cdn + image.name;
 
-                convertImgToBase64URL(url, function(base64DataURL)
+                convertImgToBase64URL(url, function(base64DataURL, err)
                 {
-                    CameraRoll.saveToCameraRoll(base64DataURL, function()
+                    if (err)
                     {
-                        image.status = 'saved';
-                        $scope.$apply();
+                        // could be cors - try s3
 
-                    }, function(err)
+                        console.log('cdn error', err);
+
+                        url = $scope.s3 + image.name;
+
+                        convertImgToBase64URL(url, function(base64DataURL, err)
+                        {
+                            if (err)
+                            {
+                                console.log('s3 error', err);
+                                image.error = "Sorry - a system error prevented saving.";
+                            }
+                            else
+                            {
+                                saveToCameraRoll(base64DataURL, image);
+                            }
+                        }, 'image/jpeg');
+                    }
+                    else
                     {
-                        image.status = 'Error : ' + err;
-                        $scope.$apply();
+                        saveToCameraRoll(base64DataURL, image);
+                    }
 
-                    });
+
                 }, 'image/jpeg');
 
                 resetReloader();
@@ -150,31 +194,65 @@
              * http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
              */
 
-             // cors test example
-             // curl -sI -H "Origin: codeindeed.com" -H "Access-Control-Request-Method: GET" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg
+            // cors test example
+            // curl -sI -H "Origin: codeindeed.com" -H "Access-Control-Request-Method: GET" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg
 
             function convertImgToBase64URL(url, callback, outputFormat)
             {
                 var img = new Image();
                 img.crossOrigin = 'Anonymous';
+
                 img.onload = function()
                 {
                     var canvas = document.createElement('CANVAS'),
                         ctx = canvas.getContext('2d'),
                         dataURL;
+
                     canvas.height = img.height;
                     canvas.width = img.width;
+
                     ctx.drawImage(img, 0, 0);
+
                     dataURL = canvas.toDataURL(outputFormat);
+
                     callback(dataURL);
+
                     canvas = null;
                 };
+
+                img.onerror = function(e)
+                {
+                    console.log("img error", e);
+                    callback(null, e);
+                };
+
+                img.onabort = img.onerror;
+
                 img.src = url;
             }
+
+            //-------------- sharing
+
+            $scope.shareAnywhere = function()
+            {
+                $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "http://blog.nraboy.com");
+            };
+
+            $scope.shareViaTwitter = function(message, image, link)
+            {
+                $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result)
+                {
+                    $cordovaSocialSharing.shareViaTwitter(message, image, link);
+                }, function(error)
+                {
+                    alert("Cannot share on Twitter");
+                });
+            };
 
             //----------------- init
 
             $scope.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
+            $scope.s3 = 'https://s3.amazonaws.com/functal-images/';
 
             $scope.showCount = 6;
 

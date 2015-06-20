@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"clear",
+				"clearStatus"
+			],
+			[
 				"re",
 				"resetReloader"
 			],
@@ -510,15 +514,61 @@
 			[
 				"c",
 				"createSpy"
-			],
-			[
-				"proto",
-				"prototype"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "www/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 6295,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 694 files for \"functal-images\"\n\n0 matches",
+			"settings":
+			{
+				"buffer_size": 51,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "platforms/ios/cordova/console.log",
+			"settings":
+			{
+				"buffer_size": 85000,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "(function()\n{\n    \"use strict\";\n\n\n    var module = angular.module('functal.controllers', []);\n\n    module.controller('ImagesCtrl', ['functalData', '$interval', '$scope', '$ionicScrollDelegate', '$ionicLoading',\n        function(functalData, $interval, $scope, $ionicScrollDelegate, $ionicLoading)\n        {\n            //--- get images\n\n            var getImages = function()\n            {\n                $ionicLoading.show(\n                {\n                    template: 'Loading...'\n                });\n\n                functalData.getImages().then(function(result)\n                {\n                    $scope.images = R.map(function(i)\n                    {\n                        return {\n                            name: i\n                        };\n                    }, result.data.images);\n\n                    sort();\n\n                    $ionicLoading.hide();\n                });\n            };\n\n            //--- reload 5 minutes since last action\n\n            var resetReloader = function()\n            {\n                if ($scope.reloadTimer)\n                {\n                    $interval.cancel($scope.reloadTimer);\n                }\n\n                $scope.reloadTimer = $interval(function()\n                {\n                    console.log('reload');\n\n                    getImages();\n                }, 5 * 60000);\n            };\n\n            //--- clear status after 5 seconds\n\n            // var clearStatus = function(image)\n            // {\n            //     $interval(function()\n            //     {\n            //         image.status = '';\n            //     }, 5000);\n            // };\n\n            //--- sort\n\n            var sort = function()\n            {\n                $scope.images = R.sort(function(a, b)\n                {\n                    switch ($scope.sorter)\n                    {\n                        case 'asc':\n                            {\n                                return -(b > a ? 1 : b < a ? -1 : 0);\n                            }\n\n                        case 'desc':\n                            {\n                                return (b > a ? 1 : b < a ? -1 : 0);\n                            }\n\n                        case 'shuffle':\n                            {\n                                return Math.random() < 0.5 ? -1 : 1;\n                            }\n                    }\n\n                }, $scope.images);\n            };\n\n            //--- goto top of screen\n\n            $scope.gotoTop = function()\n            {\n                $window.location.href = '#top';\n\n                resetReloader();\n\n            };\n\n            //--- infinite scroll\n\n            $scope.showMore = function()\n            {\n                $scope.showCount += 4;\n\n                console.log('showmore', $scope.showCount);\n\n                $scope.$broadcast('scroll.infiniteScrollComplete');\n\n                resetReloader();\n            };\n\n            //--- user sort\n\n            $scope.sortBy = function(sorter)\n            {\n                $scope.sorter = sorter;\n\n                sort();\n\n                $scope.showCount = 6;\n\n                $ionicScrollDelegate.scrollTop();\n\n                resetReloader();\n\n            };\n\n            // ---------------- save to camera roll\n\n            $scope.save = function(image)\n            {\n                image.status = 'saving to your photos...';\n\n                var url = $scope.cdn + image.name;\n\n                convertImgToBase64URL(url, function(base64DataURL)\n                {\n                    CameraRoll.saveToCameraRoll(base64DataURL, function()\n                    {\n                        image.saved = true;\n                        image.status = 'saved';\n                        // clearStatus(image);\n                        $scope.$apply();\n\n                    }, function(err)\n                    {\n                        image.error = 'Error : ' + err;\n                        $scope.$apply();\n\n                    });\n                }, 'image/jpeg');\n\n                resetReloader();\n\n            };\n\n            /**\n             * Convert an image\n             * to a base64 url\n             * @param  {String}   url\n             * @param  {Function} callback\n             * @param  {String}   [outputFormat=image/jpeg]\n             * http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript\n             */\n\n            // cors test example\n            // curl -sI -H \"Origin: codeindeed.com\" -H \"Access-Control-Request-Method: GET\" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg\n\n            function convertImgToBase64URL(url, callback, outputFormat)\n            {\n                var img = new Image();\n                img.crossOrigin = 'Anonymous';\n                img.onload = function()\n                {\n                    var canvas = document.createElement('CANVAS'),\n                        ctx = canvas.getContext('2d'),\n                        dataURL;\n                    canvas.height = img.height;\n                    canvas.width = img.width;\n                    ctx.drawImage(img, 0, 0);\n                    dataURL = canvas.toDataURL(outputFormat);\n                    callback(dataURL);\n                    canvas = null;\n                };\n                img.src = url;\n            }\n\n            //-------------- sharing\n\n            $scope.shareAnywhere = function()\n            {\n                $cordovaSocialSharing.share(\"This is your message\", \"This is your subject\", \"www/imagefile.png\", \"http://blog.nraboy.com\");\n            };\n\n            $scope.shareViaTwitter = function(message, image, link)\n            {\n                $cordovaSocialSharing.canShareVia(\"twitter\", message, image, link).then(function(result)\n                {\n                    $cordovaSocialSharing.shareViaTwitter(message, image, link);\n                }, function(error)\n                {\n                    alert(\"Cannot share on Twitter\");\n                });\n            };\n\n            //----------------- init\n\n            $scope.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';\n\n            $scope.showCount = 6;\n\n            $scope.sorter = 'shuffle';\n\n            $scope.images = [];\n\n            getImages();\n\n            resetReloader();\n        }\n    ]);\n})();\n",
+			"settings":
+			{
+				"buffer_size": 6299,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/images.html",
+			"settings":
+			{
+				"buffer_size": 1630,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/css/style.css",
+			"settings":
+			{
+				"buffer_size": 179,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -769,7 +819,6 @@
 		"/Users/peterorum/Projects/functalapp/www/css",
 		"/Users/peterorum/Projects/functalapp/www/img",
 		"/Users/peterorum/Projects/functalapp/www/js",
-		"/Users/peterorum/Projects/functalapp/www/lib",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/css",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js",
@@ -777,12 +826,13 @@
 	],
 	"file_history":
 	[
+		"/Users/peterorum/Projects/functalapp/www/index.html",
+		"/Users/peterorum/Dropbox/Bridge/weak 2s.dlg",
 		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
 		"/Users/peterorum/Projects/functalapp/www/css/style.css",
 		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/css/fonts.css",
-		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/Daily Functal/Classes/AppDelegate.m",
 		"/Users/peterorum/Downloads/temp..ypjgkwmg.txt",
 		"/Users/peterorum/Projects/functalapp/platforms/platforms.json",
@@ -903,8 +953,7 @@
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523043209321.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523043126751.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042942248.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042518027.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042342914.json"
+		"/Users/peterorum/Projects/functal/functals/small/functal-20150523042518027.json"
 	],
 	"find":
 	{
@@ -934,6 +983,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"functal-images",
+			"convertImgToBase64URL",
+			"getImages",
+			"actionStatus",
+			"actioStatus",
+			".stat",
+			"getim",
 			"s3",
 			"resetReloader",
 			"geti",
@@ -1054,14 +1110,7 @@
 			"minDistance",
 			"int.",
 			"number.",
-			"diameter",
-			"modifiers",
-			"diameter",
-			"minStdDev",
-			"minstd",
-			"///",
-			"1431350064725",
-			"1431349826378"
+			"diameter"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1146,8 +1195,206 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "www/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6295,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6066,
+								6066
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2997.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 51,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/peterorum/Projects/functalapp",
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "platforms/ios/cordova/console.log",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 85000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 13623.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6299,
+								6299
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/peterorum/Projects/functalapp",
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 3015.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "www/templates/images.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1630,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								900,
+								900
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 179,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								37,
+								37
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1215,6 +1462,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ind",
+				"www/index.html"
+			],
 			[
 				"im",
 				"www/templates/images.html"
@@ -1426,7 +1677,7 @@
 		[
 			[
 				"",
-				"~/Projects/photoshow/photoshow.sublime-project"
+				"~/Projects/functal/functal.sublime-project"
 			],
 			[
 				"book",
