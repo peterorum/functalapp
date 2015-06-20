@@ -8,10 +8,12 @@
                 </div>
                 <div class='text-left fa-actions'>
                     <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
-                    <span class='icon-large ion-social-facebook-outline' ng-show='! image.facebooked' ng-click='shareFacebook(image);'></span>
-                    <span class='icon-large ion-social-twitter-outline' ng-show='! image.tweeted' ng-click='shareTwitter(image);'></span>
-                    <span> {{image.status}}</span>
-                    <span> {{image.error}}</span>
+                    <span class='icon-large ion-ios-upload-outline' ng-click='shareAnywhere(image);'></span>
+
+                    <span>{{image.status}}</span>
+                    <!-- <span class='icon-large ion-ios-checkmark' ng-show='image.status'></span> -->
+
+                    <span class='icon-large ion-alert-circled' ng-show='image.error'>{{image.error}}</span>
                 </div>
             </div>
         </div>

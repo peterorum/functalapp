@@ -10,7 +10,7 @@
 {
     "use strict";
 
-    var app = angular.module('functal', ['ionic', 'functal.controllers', 'functal.services']);
+    var app = angular.module('functal', ['ionic', 'ngCordova', 'functal.controllers', 'functal.services']);
 
     app.run(function($ionicPlatform)
     {
