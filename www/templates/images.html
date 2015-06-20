@@ -6,9 +6,12 @@
                 <div>
                     <img class="img-responsive" ng-src="{{cdn}}{{image.name}}" />
                 </div>
-                <div class='text-left'>
-                    <span class='icon-large ion-ios-download-outline' ng-show='! image.status' ng-click='save(image);'></span>
+                <div class='text-left fa-actions'>
+                    <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
+                    <span class='icon-large ion-social-facebook-outline' ng-show='! image.facebooked' ng-click='shareFacebook(image);'></span>
+                    <span class='icon-large ion-social-twitter-outline' ng-show='! image.tweeted' ng-click='shareTwitter(image);'></span>
                     <span> {{image.status}}</span>
+                    <span> {{image.error}}</span>
                 </div>
             </div>
         </div>
