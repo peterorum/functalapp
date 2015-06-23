@@ -5,8 +5,8 @@
 
     var module = angular.module('functal.controllers', []);
 
-    module.controller('ImagesCtrl', ['functalData', '$interval', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing',
-        function(functalData, $interval, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing)
+    module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce',
+        function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce)
         {
             //--- get images
 
@@ -28,26 +28,22 @@
 
                     sort();
 
+                    $localStorage.setObject('images', $scope.images);
+
                     $ionicLoading.hide();
+
+                }, function()
+                {
+                    // error
+                    sort();
+
+                    $ionicLoading.hide();
+
                 });
             };
 
-            //--- reload 5 minutes since last action
-
-            var resetReloader = function()
-            {
-                if ($scope.reloadTimer)
-                {
-                    $interval.cancel($scope.reloadTimer);
-                }
-
-                $scope.reloadTimer = $interval(function()
-                {
-                    console.log('reload');
-
-                    getImages();
-                }, 5 * 60000);
-            };
+            // get new images after 5 minutes idle
+            var updateImages = $debounce.debounce(getImages, 5 * 60000);
 
             //--- clear status after a while
 
@@ -84,6 +80,8 @@
                     }
 
                 }, $scope.images);
+
+                $scope.gotoTop();
             };
 
             //--- goto top of screen
@@ -92,7 +90,7 @@
             {
                 $window.location.href = '#top';
 
-                resetReloader();
+                updateImages();
 
             };
 
@@ -106,7 +104,7 @@
 
                 $scope.$broadcast('scroll.infiniteScrollComplete');
 
-                resetReloader();
+                updateImages();
             };
 
             //--- user sort
@@ -121,7 +119,7 @@
 
                 $ionicScrollDelegate.scrollTop();
 
-                resetReloader();
+                updateImages();
 
             };
 
@@ -181,7 +179,7 @@
 
                 }, 'image/jpeg');
 
-                resetReloader();
+                updateImages();
 
             };
 
@@ -272,11 +270,9 @@
 
             $scope.sorter = 'shuffle';
 
-            $scope.images = [];
+            $scope.images = $localStorage.getObject('images', []);
 
             getImages();
-
-            resetReloader();
         }
     ]);
 })();
