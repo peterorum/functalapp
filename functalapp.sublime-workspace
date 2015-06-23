@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"def",
+				"defaultObject"
+			],
+			[
+				"$loca",
+				"$localStorage"
+			],
+			[
+				"go",
+				"gotoTop"
+			],
+			[
 				"save",
 				"saveToCameraRoll"
 			],
@@ -502,18 +514,6 @@
 			[
 				"New",
 				"newValue"
-			],
-			[
-				"wat",
-				"watcher"
-			],
-			[
-				"last",
-				"lastDirtyWatch"
-			],
-			[
-				"wa",
-				"watchExecutions"
 			]
 		]
 	},
@@ -523,15 +523,25 @@
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 8053,
+				"buffer_size": 8396,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/app.js",
+			"contents": "Searching 704 files for \"$localstorage\"\n\n0 matches",
 			"settings":
 			{
-				"buffer_size": 1785,
+				"buffer_size": 50,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "www/js/utils.js",
+			"settings":
+			{
+				"buffer_size": 965,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,23 +549,15 @@
 			"file": "www/index.html",
 			"settings":
 			{
-				"buffer_size": 1595,
+				"buffer_size": 1635,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/templates/images.html",
+			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 1620,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/style.css",
-			"settings":
-			{
-				"buffer_size": 217,
+				"buffer_size": 1800,
 				"line_ending": "Unix"
 			}
 		}
@@ -804,9 +806,6 @@
 	"expanded_folders":
 	[
 		"/Users/peterorum/Projects/functalapp",
-		"/Users/peterorum/Projects/functalapp/bower_components",
-		"/Users/peterorum/Projects/functalapp/bower_components/ngCordova",
-		"/Users/peterorum/Projects/functalapp/bower_components/ngCordova/dist",
 		"/Users/peterorum/Projects/functalapp/resources",
 		"/Users/peterorum/Projects/functalapp/www",
 		"/Users/peterorum/Projects/functalapp/www/css",
@@ -819,22 +818,27 @@
 	],
 	"file_history":
 	[
+		"/Users/peterorum/Projects/functalapp/.gitignore",
+		"/Users/peterorum/Projects/functalapp/resources/make-screenshots.sh",
+		"/Users/peterorum/Projects/functal.bfg-report/2015-06-21/12-53-28/object-id-map.old-new.txt",
+		"/Users/peterorum/Projects/functal.bfg-report/2015-06-21/12-53-28/cache-stats.txt",
+		"/Users/peterorum/Projects/functalapp/resources/make-icons.sh",
+		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
+		"/Users/peterorum/Projects/functalapp/www/js/app.js",
+		"/Users/peterorum/Projects/functalapp/www/index.html",
+		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
+		"/Users/peterorum/Projects/functalapp/www/css/style.css",
 		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/bower_components/ngCordova/dist/ng-cordova.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/social-sharing/SocialSharing.js",
 		"/Users/peterorum/Downloads/ng-cordova-master/dist/ng-cordova.js",
-		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/cordova/console.log",
-		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
-		"/Users/peterorum/Projects/functalapp/www/css/style.css",
-		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Dropbox/Bridge/weak 2s.dlg",
 		"/Users/peterorum/Projects/functalapp/www/css/fonts.css",
 		"/Users/peterorum/Projects/functalapp/platforms/ios/Daily Functal/Classes/AppDelegate.m",
 		"/Users/peterorum/Downloads/temp..ypjgkwmg.txt",
 		"/Users/peterorum/Projects/functalapp/platforms/platforms.json",
 		"/Users/peterorum/Projects/functalapp/ionic.project",
-		"/Users/peterorum/Projects/functalapp/www/js/app.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic.bundle.js",
 		"/Users/peterorum/Projects/functalapp/www/lib/ionic/css/ionic.css",
 		"/Users/peterorum/Projects/functalapp/www/templates/tabs.html",
@@ -941,12 +945,7 @@
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053232333.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053111256.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053217552.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053256338.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523052853292.json",
-		"/Users/peterorum/Projects/functal/admin/server-admin.js",
-		"/Users/peterorum/Projects/functal/admin/views/index.html",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523045455474.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523043209321.json"
+		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053256338.json"
 	],
 	"find":
 	{
@@ -976,6 +975,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$localstorage",
+			"gotoTop",
+			"shuff",
+			"gototop",
+			"resetReloader",
+			".jpg",
+			"\"$base\".png",
+			"convert \"",
 			"saveToCameraRoll",
 			"clearStatus",
 			"social",
@@ -1095,15 +1102,7 @@
 			"cdn",
 			"bucketJson",
 			"bucket",
-			"s3.",
-			"cdn =",
-			"cdn",
-			"del",
-			"body",
-			"spiral",
-			"i",
-			"/////",
-			"bander"
+			"s3."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1197,48 +1196,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8053,
+						"buffer_size": 8396,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6723,
-								6723
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3694.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1785,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								451,
-								451
+								1069,
+								1069
 							]
 						],
 						"settings":
@@ -1254,24 +1220,95 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "www/index.html",
+					"buffer": 1,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1595,
+						"buffer_size": 50,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								768,
-								768
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/peterorum/Projects/functalapp",
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/js/utils.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								925,
+								925
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1029,
+								1029
 							]
 						],
 						"settings":
@@ -1291,20 +1328,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "www/templates/images.html",
+					"buffer": 4,
+					"file": "www/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1620,
+						"buffer_size": 1800,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								766,
-								766
+								461,
+								461
 							]
 						],
 						"settings":
@@ -1312,40 +1349,9 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 217,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								159,
-								159
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
