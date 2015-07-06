@@ -9,23 +9,23 @@
                 <div class='text-left fa-actions'>
                     <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
                     <span class='icon-large ion-ios-upload-outline' ng-click='shareAnywhere(image);'></span>
-
+                    <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vote(image, true); '></span><span ng-show='image.vote'>{{image.likes}}</span>
+                    <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vote(image, false); '></span><span ng-show='image.vote'>{{image.dislikes}}</span>
                     <span>{{image.status}}</span>
-                    <!-- <span class='icon-large ion-ios-checkmark' ng-show='image.status'></span> -->
-
-                    <span class='icon-large ion-alert-circled' ng-show='image.error'>{{image.error}}</span>
+                    <!-- <span class='icon-large ion-ios-checkmark ' ng-show='image.status '></span> -->
+                    <span class='icon-large ion-alert-circled ' ng-show='image.error '>{{image.error}}</span>
                 </div>
             </div>
         </div>
-        <ion-infinite-scroll on-infinite="showMore()" distance="1%" immediate-check='false'>
+        <ion-infinite-scroll on-infinite="showMore()" distance="1%" immediate-check='false '>
         </ion-infinite-scroll>
     </ion-content>
-    <ion-footer-bar class="bar-stable" style='text-align: center'>
-        <div style='width:100%'>
+    <ion-footer-bar class="bar-stable" style='text-align: center '>
+        <div style='width:100% '>
             <div class="buttons">
-                <!-- <button class="button" ng-class='{"button-positive" : sorter === "desc"}' ng-click='sortBy("desc")'>Latest</button> -->
-                <button class="button" ng-click='sortBy("shuffle")'>Shuffle</button>
-                <!-- <button class="button" ng-click='test()'>Test</button> -->
+                <!-- <button class="button" ng-class='{ "button-positive" : sorter==="desc" } ' ng-click='sortBy( "desc") '>Latest</button> -->
+                <button class="button" ng-click='sortBy( "shuffle") '>Shuffle</button>
+                <!-- <button class="button" ng-click='test() '>Test</button> -->
             </div>
         </div>
     </ion-footer-bar>
