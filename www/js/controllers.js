@@ -19,12 +19,7 @@
 
                 functalData.getImages().then(function(result)
                 {
-                    $scope.images = R.map(function(i)
-                    {
-                        return {
-                            name: i
-                        };
-                    }, result.data.images);
+                    $scope.images = result.data.images;
 
                     sort();
 
@@ -259,6 +254,81 @@
                         });
                     }, 0);
                 }
+            };
+
+            //-------------- sharing
+
+            $scope.vote = function(image, isLike)
+            {
+                var like, dislike;
+
+                if (isLike)
+                {
+                    if (!image.vote)
+                    {
+                        // new
+                        image.vote = 'like';
+                        like = 1;
+                        dislike = 0;
+                    }
+                    else if (image.vote === 'like')
+                    {
+                        // unvote
+                        image.vote = '';
+                        like = -1;
+                        dislike = 0;
+                    }
+                    else
+                    {
+                        // change
+                        image.vote = 'like';
+                        like = 1;
+                        dislike = -1;
+                    }
+                }
+                else
+                {
+                    if (!image.vote)
+                    {
+                        // new
+                        image.vote = 'dislike';
+                        like = 0;
+                        dislike = 1;
+                    }
+                    else if (image.vote === 'dislike')
+                    {
+                        // unvote
+                        image.vote = '';
+                        like = 0;
+                        dislike = -1;
+                    }
+                    else
+                    {
+                        // change
+                        image.vote = 'dislike';
+                        like = -1;
+                        dislike = 1;
+                    }
+                }
+
+                // local update
+                image.likes += like;
+                image.dislikes += dislike;
+
+                functalData.vote(image, like, dislike).then(function(result)
+                {
+                    if (result.status === 'ok')
+                    {
+                        // db update
+                        images.likes = result.likes;
+                        images.dislikes = result.dislikes;
+                    }
+
+                }, function()
+                {
+                    // error
+                });
+
             };
 
             //----------------- init
