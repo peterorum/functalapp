@@ -1,5 +1,8 @@
 <ion-view view-title="Daily Functal">
-    <ion-content class="padding text-center">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="padding text-center has-header">
         <div id="top"></div>
         <div class="list card" ng-repeat="image in images | limitTo : showCount">
             <div class="item item-body">
@@ -12,7 +15,6 @@
                     <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vote(image, true); '></span><span ng-show='image.vote'>{{image.likes}}</span>
                     <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vote(image, false); '></span><span ng-show='image.vote'>{{image.dislikes}}</span>
                     <span>{{image.status}}</span>
-                    <!-- <span class='icon-large ion-ios-checkmark ' ng-show='image.status '></span> -->
                     <span class='icon-large ion-alert-circled ' ng-show='image.error '>{{image.error}}</span>
                 </div>
             </div>
@@ -24,7 +26,7 @@
         <div style='width:100% '>
             <div class="buttons">
                 <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "shuffle" }' ng-click='sortBy("shuffle")'>Shuffle
-                <span class='ion-ios-shuffle' ng-show="sorting.sortBy === 'shuffle'"></span>
+                    <span class='ion-ios-shuffle' ng-show="sorting.sortBy === 'shuffle'"></span>
                 </button>
                 <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "new" }' ng-click='sortBy("new")'>New
                     <span class="ion-ios-arrow-thin-up" ng-show="!sorting.desc && sorting.sortBy === 'new'"></span>

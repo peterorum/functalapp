@@ -4,30 +4,34 @@
 }
 
 .icon-large {
-    font-size:200%;
+    font-size: 200%;
 }
 
 .fa-actions {
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .fa-actions span {
-    margin-left:4px;
+    margin-left: 4px;
 }
 
 .fa-actions span.icon-large:not(:first-child) {
-    margin-left:25px;
+    margin-left: 25px;
 }
 
 .fa-vote-like {
-    color:#ffd800;
+    color: #ffd800;
 }
 
 .fa-vote-dislike {
-    color:#46b8f2;
+    color: #46b8f2;
 }
 
 ion-footer-bar .buttons .button {
-    margin-left:10px;
-    margin-right:10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.fa-help table tr td {
+    padding: 8px;
 }

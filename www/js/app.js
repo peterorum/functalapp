@@ -38,18 +38,40 @@
         // Set up the various states which the app can be in.
         // Each state's controller can be found in controllers.js
         $stateProvider
-
-        .state('images',
-        {
-            url: '/images',
-            templateUrl: 'templates/images.html',
-            controller: 'ImagesCtrl'
-
-        });
+            .state('app',
+            {
+                url: "/app",
+                abstract: true,
+                templateUrl: "templates/menu.html",
+                controller: 'AppCtrl'
+            })
+            .state('app.images',
+            {
+                url: '/images',
+                views:
+                {
+                    'menuContent':
+                    {
+                        templateUrl: 'templates/images.html',
+                        controller: 'ImagesCtrl'
+                    }
+                }
+            })
+            .state('app.help',
+            {
+                url: '/help',
+                views:
+                {
+                    'menuContent':
+                    {
+                        templateUrl: 'templates/help.html'
+                    }
+                }
+            });
 
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/images');
+        $urlRouterProvider.otherwise('/app/images');
 
     });
 

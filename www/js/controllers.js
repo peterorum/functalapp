@@ -5,6 +5,8 @@
 
     var module = angular.module('functal.controllers', []);
 
+    module.controller('AppCtrl', [function() {}]);
+
     module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
         function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate)
         {
