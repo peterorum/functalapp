@@ -12,7 +12,11 @@
 }
 
 .fa-actions span {
-    margin-right:25px;
+    margin-left:4px;
+}
+
+.fa-actions span.icon-large:not(:first-child) {
+    margin-left:25px;
 }
 
 .fa-vote-like {

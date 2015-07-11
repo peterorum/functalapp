@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"my",
+				"myLikes"
+			],
+			[
+				"dis",
+				"dislikes"
+			],
+			[
+				"n",
+				"name"
+			],
+			[
+				"get",
+				"getObject"
+			],
+			[
+				"purge",
+				"purgeDisliked"
+			],
+			[
 				"co",
 				"compare"
 			],
@@ -14,10 +34,6 @@
 			[
 				"sort",
 				"sorter"
-			],
-			[
-				"dis",
-				"dislike"
 			],
 			[
 				"l",
@@ -34,10 +50,6 @@
 			[
 				"fu",
 				"functalData"
-			],
-			[
-				"get",
-				"getImages"
 			],
 			[
 				"def",
@@ -380,10 +392,6 @@
 				"adjzCount〔variable〕"
 			],
 			[
-				"n",
-				"norm"
-			],
-			[
 				"limit",
 				"limitTests"
 			],
@@ -506,14 +514,6 @@
 			[
 				"d",
 				"postDigestQueue"
-			],
-			[
-				"as",
-				"asyncQueue"
-			],
-			[
-				"asy",
-				"asyncQueue"
 			]
 		]
 	},
@@ -555,7 +555,7 @@
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 11072,
+				"buffer_size": 14310,
 				"line_ending": "Unix"
 			}
 		}
@@ -817,11 +817,11 @@
 	],
 	"file_history":
 	[
+		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/js/services.js",
 		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
 		"/Users/peterorum/Projects/functalapp/www/css/style.css",
-		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/www/js/app.js",
 		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Projects/functalapp/www/js/utils.js",
@@ -974,6 +974,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cleanVotes",
+			"vote",
+			"- 1",
+			"dislikes",
+			"updateImages",
+			"time",
+			"vote",
 			"boot",
 			"bootstrap",
 			"sort",
@@ -1094,14 +1101,7 @@
 			"hslStdDev",
 			"minli",
 			"pluck",
-			"palette",
-			"hsls",
-			"lightnessStddev",
-			"std",
-			"'r'",
-			"');",
-			";",
-			"\\n');"
+			"palette"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1186,7 +1186,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -1235,8 +1235,8 @@
 						"selection":
 						[
 							[
-								1236,
-								1236
+								1021,
+								1021
 							]
 						],
 						"settings":
@@ -1283,7 +1283,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1323,15 +1323,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11072,
+						"buffer_size": 14310,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2519,
-								2519
+								13240,
+								13375
 							]
 						],
 						"settings":
@@ -1344,10 +1344,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 738.0,
+						"translation.y": 7194.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1418,16 +1418,16 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"config.xml"
+			],
+			[
 				"sy",
 				"www/css/style.css"
 			],
 			[
 				"contr",
 				"www/js/controllers.js"
-			],
-			[
-				"con",
-				"config.xml"
 			],
 			[
 				"image",
