@@ -5,8 +5,8 @@
 
     var module = angular.module('functal.controllers', []);
 
-    module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce',
-        function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce)
+    module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
+        function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate)
         {
             //--- get images
 
@@ -20,6 +20,29 @@
                 functalData.getImages().then(function(result)
                 {
                     $scope.images = result.data.images;
+
+                    // set votes
+                    var myLikes = $localStorage.getObject('likes', []);
+                    var myDislikes = $localStorage.getObject('dislikes', []);
+
+                    R.forEach(function(img)
+                    {
+                        if (R.find(function(v)
+                            {
+                                return v === img.name;
+                            }, myLikes))
+                        {
+                            img.vote = 'like';
+                        }
+
+                        if (R.find(function(v)
+                            {
+                                return v === img.name;
+                            }, myDislikes))
+                        {
+                            img.vote = 'dislike';
+                        }
+                    }, $scope.images);
 
                     sort();
 
@@ -42,7 +65,9 @@
                 function()
                 {
                     getImages();
-                    cleanDislikes();
+                    cleanVotes('likes');
+                    cleanVotes('dislikes');
+
                 }, 5 * 60000);
 
             //--- clear status after a while
@@ -68,21 +93,25 @@
 
             // periodic remove unnecessary dislikes
 
-            var cleanDislikes = function()
+            var cleanVotes = function(vote)
             {
                 // just keep those that are still around
 
-                var dislikes = $localStorage.getObject('dislikes', []);
+                // vote is 'like' or 'dislikes'
 
-                dislikes = R.filter(function(n)
+                var votes = $localStorage.getObject(vote, []);
+
+                votes = R.filter(function(n)
                 {
-                    return !! R.find(function(i)
+                    return !!R.find(function(i)
                     {
                         return i.name === n;
                     }, images);
-                }, dislikes);
+                }, votes);
 
-                $localStorage.setObject('dislikes', dislikes);
+                votes = R.uniq(votes);
+
+                $localStorage.setObject(vote, votes);
             };
 
             //--- sort
@@ -329,6 +358,7 @@
             {
                 var like, dislike;
 
+                var myLikes = $localStorage.getObject('likes', []);
                 var myDislikes = $localStorage.getObject('dislikes', []);
 
                 if (isLike)
@@ -339,6 +369,8 @@
                         image.vote = 'like';
                         like = 1;
                         dislike = 0;
+
+                        myLikes.push(image.name);
                     }
                     else if (image.vote === 'like')
                     {
@@ -346,6 +378,11 @@
                         image.vote = '';
                         like = -1;
                         dislike = 0;
+
+                        myLikes = R.filter(function(i)
+                        {
+                            return i.name !== image.name;
+                        }, myLikes);
                     }
                     else
                     {
@@ -353,6 +390,8 @@
                         image.vote = 'like';
                         like = 1;
                         dislike = -1;
+
+                        myLikes.push(image.name);
 
                         myDislikes = R.filter(function(i)
                         {
@@ -392,14 +431,20 @@
                         dislike = 1;
 
                         myDislikes.push(image.name);
+
+                        myLikes = R.filter(function(i)
+                        {
+                            return i.name !== image.name;
+                        }, myLikes);
                     }
                 }
 
+                $localStorage.setObject('likes', myLikes);
                 $localStorage.setObject('dislikes', myDislikes);
 
                 // local update
-                image.likes += like;
-                image.dislikes += dislike;
+                image.likes = Math.max(0, image.likes + like);
+                image.dislikes = Math.max(0, image.dislikes + dislike);
 
                 functalData.vote(image, like, dislike).then(function(result)
                 {
