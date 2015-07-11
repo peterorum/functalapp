@@ -8,8 +8,8 @@
     {
         var functalData = {};
 
-        // functalData.server = 'http://functalserver.codeindeed.com:8083';
-        functalData.server = 'http://localhost:8083';
+        functalData.server = 'http://functalserver.codeindeed.com:8083';
+        // functalData.server = 'http://localhost:8083';
 
         functalData.getImages = function()
         {

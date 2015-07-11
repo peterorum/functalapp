@@ -56,23 +56,41 @@
             {
                 $scope.images = R.sort(function(a, b)
                 {
-                    switch ($scope.sorter)
+                    var compare;
+
+                    switch ($scope.sorting.sortBy)
                     {
-                        case 'asc':
+                        case 'new':
                             {
-                                return -(b > a ? 1 : b < a ? -1 : 0);
+                                compare = -(a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+
+                                break;
                             }
 
-                        case 'desc':
+                        case 'popular':
                             {
-                                return (b > a ? 1 : b < a ? -1 : 0);
+                                var bvotes = b.likes - b.dislikes;
+                                var avotes = a.likes - a.dislikes;
+
+                                compare = (avotes < avotes ? -1 : avotes > avotes ? 1 : 0);
+
+                                break;
                             }
 
                         case 'shuffle':
                             {
-                                return Math.random() < 0.5 ? -1 : 1;
+                                compare = Math.random() < 0.5 ? -1 : 1;
+
+                                break;
                             }
                     }
+
+                    if ($scope.sorting.desc)
+                    {
+                        compare = -compare;
+                    }
+
+                    return compare;
 
                 }, $scope.images);
 
@@ -106,7 +124,19 @@
 
             $scope.sortBy = function(sorter)
             {
-                $scope.sorter = sorter;
+                if (sorter === $scope.sorting.sortBy)
+                {
+                    $scope.sorting.desc = !$scope.sorting.desc;
+                }
+                else
+                {
+                    $scope.sorting.desc = false;
+                }
+
+                $scope.sorting.sortBy = sorter;
+
+
+                $localStorage.setObject('sorting', $scope.sorting);
 
                 sort();
 
@@ -338,9 +368,13 @@
 
             $scope.showCount = 6;
 
-            $scope.sorter = 'shuffle';
-
             $scope.images = $localStorage.getObject('images', []);
+
+            $scope.sorting = $localStorage.getObject('sorting',
+            {
+                sortBy: 'shuffle',
+                desc: true
+            });
 
             getImages();
         }

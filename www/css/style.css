@@ -22,3 +22,8 @@
 .fa-vote-dislike {
     color:#46b8f2;
 }
+
+ion-footer-bar .buttons .button {
+    margin-left:10px;
+    margin-right:10px;
+}

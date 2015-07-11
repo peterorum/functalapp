@@ -23,9 +23,17 @@
     <ion-footer-bar class="bar-stable" style='text-align: center '>
         <div style='width:100% '>
             <div class="buttons">
-                <!-- <button class="button" ng-class='{ "button-positive" : sorter==="desc" } ' ng-click='sortBy( "desc") '>Latest</button> -->
-                <button class="button" ng-click='sortBy( "shuffle") '>Shuffle</button>
-                <!-- <button class="button" ng-click='test() '>Test</button> -->
+                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "shuffle" }' ng-click='sortBy("shuffle")'>Shuffle
+                <span class='ion-ios-shuffle' ng-show="sorting.sortBy === 'shuffle'"></span>
+                </button>
+                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "new" }' ng-click='sortBy("new")'>New
+                    <span class="ion-ios-arrow-thin-up" ng-show="!sorting.desc && sorting.sortBy === 'new'"></span>
+                    <span class="ion-ios-arrow-thin-down" ng-show="sorting.desc && sorting.sortBy === 'new'"></span>
+                </button>
+                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "popular" }' ng-click='sortBy("popular")'>Popular
+                    <span class="ion-ios-arrow-thin-up" ng-show="!sorting.desc && sorting.sortBy === 'popular'"></span>
+                    <span class="ion-ios-arrow-thin-down" ng-show="sorting.desc && sorting.sortBy === 'popular'"></span>
+                </button>
             </div>
         </div>
     </ion-footer-bar>
