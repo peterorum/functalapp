@@ -38,7 +38,12 @@
             };
 
             // get new images after 5 minutes idle
-            var updateImages = $debounce.debounce(getImages, 5 * 60000);
+            var updateImages = $debounce.debounce(
+                function()
+                {
+                    getImages();
+                    cleanDislikes();
+                }, 5 * 60000);
 
             //--- clear status after a while
 
@@ -50,10 +55,42 @@
                 }, 3000);
             };
 
+            //--- purge
+
+            var purgeDisliked = function()
+            {
+                return R.filter(function(img)
+                {
+                    return img.vote !== 'disliked' && img.likes >= img.dislikes;
+
+                }, $scope.images);
+            };
+
+            // periodic remove unnecessary dislikes
+
+            var cleanDislikes = function()
+            {
+                // just keep those that are still around
+
+                var dislikes = $localStorage.getObject('dislikes', []);
+
+                dislikes = R.filter(function(n)
+                {
+                    return !! R.find(function(i)
+                    {
+                        return i.name === n;
+                    }, images);
+                }, dislikes);
+
+                $localStorage.setObject('dislikes', dislikes);
+            };
+
             //--- sort
 
             var sort = function()
             {
+                $scope.images = purgeDisliked();
+
                 $scope.images = R.sort(function(a, b)
                 {
                     var compare;
@@ -292,6 +329,8 @@
             {
                 var like, dislike;
 
+                var myDislikes = $localStorage.getObject('dislikes', []);
+
                 if (isLike)
                 {
                     if (!image.vote)
@@ -314,9 +353,15 @@
                         image.vote = 'like';
                         like = 1;
                         dislike = -1;
+
+                        myDislikes = R.filter(function(i)
+                        {
+                            return i.name !== image.name;
+                        }, myDislikes);
+
                     }
                 }
-                else
+                else // dislike
                 {
                     if (!image.vote)
                     {
@@ -324,6 +369,8 @@
                         image.vote = 'dislike';
                         like = 0;
                         dislike = 1;
+
+                        myDislikes.push(image.name);
                     }
                     else if (image.vote === 'dislike')
                     {
@@ -331,6 +378,11 @@
                         image.vote = '';
                         like = 0;
                         dislike = -1;
+
+                        myDislikes = R.filter(function(i)
+                        {
+                            return i.name !== image.name;
+                        }, myDislikes);
                     }
                     else
                     {
@@ -338,8 +390,12 @@
                         image.vote = 'dislike';
                         like = -1;
                         dislike = 1;
+
+                        myDislikes.push(image.name);
                     }
                 }
+
+                $localStorage.setObject('dislikes', myDislikes);
 
                 // local update
                 image.likes += like;
