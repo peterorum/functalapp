@@ -15,8 +15,12 @@
     margin-left: 4px;
 }
 
-.fa-actions span.icon-large:not(:first-child) {
-    margin-left: 25px;
+.fa-actions span.icon-large {
+    margin-right: 25px;
+}
+
+.fa-actions .fa-votes {
+    margin-left: -20px;
 }
 
 .fa-vote-like {

@@ -10,12 +10,16 @@
                     <img class="img-responsive" ng-src="{{cdn}}{{image.name}}" />
                 </div>
                 <div class='text-left fa-actions'>
-                    <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
-                    <span class='icon-large ion-ios-upload-outline' ng-click='shareAnywhere(image);'></span>
-                    <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vote(image, true); '></span><span ng-show='image.vote'>{{image.likes}}</span>
-                    <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vote(image, false); '></span><span ng-show='image.vote'>{{image.dislikes}}</span>
-                    <span>{{image.status}}</span>
-                    <span class='icon-large ion-alert-circled ' ng-show='image.error '>{{image.error}}</span>
+                    <div>
+                        <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
+                        <span class='icon-large ion-ios-upload-outline' ng-click='shareAnywhere(image);'></span>
+                        <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vote(image, true); '></span><span class='fa-votes' ng-show='image.vote'>{{image.likes}}</span>
+                        <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vote(image, false); '></span><span class='fa-votes' ng-show='image.vote'>{{image.dislikes}}</span>
+                    </div>
+                    <div ng-show="image.status || image.error">
+                        <span>{{image.status}}</span>
+                        <span class='icon-large ion-alert-circled ' ng-show='image.error '>{{image.error}}</span>
+                    </div>
                 </div>
             </div>
         </div>
