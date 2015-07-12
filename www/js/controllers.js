@@ -137,10 +137,10 @@
 
                         case 'popular':
                             {
-                                var bvotes = b.likes - b.dislikes;
                                 var avotes = a.likes - a.dislikes;
+                                var bvotes = b.likes - b.dislikes;
 
-                                compare = (avotes < avotes ? -1 : avotes > avotes ? 1 : 0);
+                                compare = -(avotes < bvotes ? -1 : avotes > bvotes ? 1 : 0);
 
                                 break;
                             }
