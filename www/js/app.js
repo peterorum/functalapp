@@ -53,7 +53,7 @@
                     'menuContent':
                     {
                         templateUrl: 'templates/images.html',
-                        controller: 'ImagesCtrl'
+                        controller: 'ImagesCtrl as vm'
                     }
                 }
             })

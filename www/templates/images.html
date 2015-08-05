@@ -4,17 +4,17 @@
     </ion-nav-buttons>
     <ion-content class="padding text-center has-header">
         <div id="top"></div>
-        <div class="list card" ng-repeat="image in images | limitTo : showCount">
+        <div class="list card" ng-repeat="image in vm.images | limitTo : vm.showCount">
             <div class="item item-body">
                 <div>
-                    <img class="img-responsive" ng-src="{{cdn}}{{image.name}}" />
+                    <img class="img-responsive" ng-src="{{vm.cdn}}{{image.name}}" />
                 </div>
                 <div class='text-left fa-actions'>
                     <div>
-                        <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='save(image);'></span>
-                        <span class='icon-large ion-ios-upload-outline' ng-click='shareAnywhere(image);'></span>
-                        <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vote(image, true); '></span><span class='fa-votes' ng-show='image.vote'>{{image.likes}}</span>
-                        <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vote(image, false); '></span><span class='fa-votes' ng-show='image.vote'>{{image.dislikes}}</span>
+                        <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='vm.save(image);'></span>
+                        <span class='icon-large ion-ios-upload-outline' ng-click='vm.shareAnywhere(image);'></span>
+                        <span class='icon-large ion-thumbsup' ng-class='{"fa-vote-like": image.vote === "like" }' ng-click='vm.vote(image, true); '></span><span class='fa-votes' ng-show='image.vote'>{{image.likes}}</span>
+                        <span class='icon-large ion-thumbsdown' ng-class='{"fa-vote-dislike": image.vote === "dislike" }' ng-click='vm.vote(image, false); '></span><span class='fa-votes' ng-show='image.vote'>{{image.dislikes}}</span>
                     </div>
                     <div ng-show="image.status || image.error">
                         <span>{{image.status}}</span>
@@ -23,22 +23,22 @@
                 </div>
             </div>
         </div>
-        <ion-infinite-scroll on-infinite="showMore()" distance="1%" immediate-check='false '>
+        <ion-infinite-scroll on-infinite="vm.showMore()" distance="1%" immediate-check='false '>
         </ion-infinite-scroll>
     </ion-content>
     <ion-footer-bar class="bar-stable" style='text-align: center '>
         <div style='width:100% '>
             <div class="buttons">
-                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "shuffle" }' ng-click='sortBy("shuffle")'>Shuffle
-                    <span class='ion-ios-shuffle' ng-show="sorting.sortBy === 'shuffle'"></span>
+                <button class="button" ng-class='{ "button-positive" : vm.sorting.sortBy === "shuffle" }' ng-click='vm.sortBy("shuffle")'>Shuffle
+                    <span class='ion-ios-shuffle' ng-show="vm.sorting.sortBy === 'shuffle'"></span>
                 </button>
-                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "new" }' ng-click='sortBy("new")'>New
-                    <span class="ion-ios-arrow-thin-up" ng-show="!sorting.desc && sorting.sortBy === 'new'"></span>
-                    <span class="ion-ios-arrow-thin-down" ng-show="sorting.desc && sorting.sortBy === 'new'"></span>
+                <button class="button" ng-class='{ "button-positive" : vm.sorting.sortBy === "new" }' ng-click='vm.sortBy("new")'>New
+                    <span class="ion-ios-arrow-thin-up" ng-show="!vm.sorting.desc && vm.sorting.sortBy === 'new'"></span>
+                    <span class="ion-ios-arrow-thin-down" ng-show="vm.sorting.desc && vm.sorting.sortBy === 'new'"></span>
                 </button>
-                <button class="button" ng-class='{ "button-positive" : sorting.sortBy === "popular" }' ng-click='sortBy("popular")'>Popular
-                    <span class="ion-ios-arrow-thin-up" ng-show="!sorting.desc && sorting.sortBy === 'popular'"></span>
-                    <span class="ion-ios-arrow-thin-down" ng-show="sorting.desc && sorting.sortBy === 'popular'"></span>
+                <button class="button" ng-class='{ "button-positive" : vm.sorting.sortBy === "popular" }' ng-click='vm.sortBy("popular")'>Popular
+                    <span class="ion-ios-arrow-thin-up" ng-show="!vm.sorting.desc && vm.sorting.sortBy === 'popular'"></span>
+                    <span class="ion-ios-arrow-thin-down" ng-show="vm.sorting.desc && vm.sorting.sortBy === 'popular'"></span>
                 </button>
             </div>
         </div>

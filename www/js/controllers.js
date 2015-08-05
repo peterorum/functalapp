@@ -7,8 +7,10 @@
 
   module.controller('AppCtrl', [function() {}]);
 
-  module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
-    function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
+  module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
+    function(functalData, $window, $timeout, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
+
+      var vm = this;
 
       //--- get images
 
@@ -21,7 +23,7 @@
 
         functalData.getImages().then(function(result) {
 
-          $scope.images = result.data.images;
+          vm.images = result.data.images;
 
           // set votes
           var myLikes = $localStorage.getObject('likes', []);
@@ -46,11 +48,11 @@
 
               img.vote = 'dislike';
             }
-          }, $scope.images);
+          }, vm.images);
 
           sort();
 
-          $localStorage.setObject('images', $scope.images);
+          $localStorage.setObject('images', vm.images);
 
           $ionicLoading.hide();
 
@@ -92,7 +94,7 @@
 
           return img.vote !== 'disliked' && img.likes >= img.dislikes;
 
-        }, $scope.images);
+        }, vm.images);
 
       };
 
@@ -125,13 +127,13 @@
 
       var sort = function() {
 
-        $scope.images = purgeDisliked();
+        vm.images = purgeDisliked();
 
-        $scope.images = R.sort(function(a, b) {
+        vm.images = R.sort(function(a, b) {
 
           var compare;
 
-          switch ($scope.sorting.sortBy) {
+          switch (vm.sorting.sortBy) {
 
             case 'new':{
               compare = -(a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
@@ -155,21 +157,21 @@
               }
           }
 
-          if ($scope.sorting.desc) {
+          if (vm.sorting.desc) {
 
             compare = -compare;
           }
 
           return compare;
 
-        }, $scope.images);
+        }, vm.images);
 
-        $scope.gotoTop();
+        vm.gotoTop();
       };
 
       //--- goto top of screen
 
-      $scope.gotoTop = function() {
+      vm.gotoTop = function() {
 
         $window.location.href = '#top';
 
@@ -179,38 +181,38 @@
 
       //--- infinite scroll
 
-      $scope.showMore = function() {
+      vm.showMore = function() {
 
-        $scope.showCount += 4;
+        vm.showCount += 4;
 
-        console.log('showmore', $scope.showCount);
+        console.log('showmore', vm.showCount);
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+        vm.$broadcast('scroll.infiniteScrollComplete');
 
         updateImages();
       };
 
       //--- user sort
 
-      $scope.sortBy = function(sorter) {
+      vm.sortBy = function(sorter) {
 
-        if (sorter === $scope.sorting.sortBy) {
+        if (sorter === vm.sorting.sortBy) {
 
-          $scope.sorting.desc = !$scope.sorting.desc;
+          vm.sorting.desc = !vm.sorting.desc;
         }
         else {
 
-          $scope.sorting.desc = false;
+          vm.sorting.desc = false;
         }
 
-        $scope.sorting.sortBy = sorter;
+        vm.sorting.sortBy = sorter;
 
 
-        $localStorage.setObject('sorting', $scope.sorting);
+        $localStorage.setObject('sorting', vm.sorting);
 
         sort();
 
-        $scope.showCount = 6;
+        vm.showCount = 6;
 
         $ionicScrollDelegate.scrollTop();
 
@@ -227,21 +229,21 @@
           image.saved = true;
           image.status = 'saved to your photos';
           clearStatus(image);
-          $scope.$apply();
+          vm.$apply();
 
         }, function(err) {
 
           image.error = 'Error : ' + err;
-          $scope.$apply();
+          vm.$apply();
 
         });
       };
 
-      $scope.save = function(image) {
+      vm.save = function(image) {
 
         image.status = 'saving to your photos...';
 
-        var url = $scope.cdn + image.name;
+        var url = vm.cdn + image.name;
 
         convertImgToBase64URL(url, function(base64DataURL, err) {
 
@@ -251,7 +253,7 @@
 
             console.log('cdn error', err);
 
-            url = $scope.s3 + image.name;
+            url = vm.s3 + image.name;
 
             convertImgToBase64URL(url, function(base64DataURL, err) {
 
@@ -326,7 +328,7 @@
 
       //-------------- sharing
 
-      $scope.shareAnywhere = function(image) {
+      vm.shareAnywhere = function(image) {
 
         if (!/sharing/.test(image.status)) {
 
@@ -339,7 +341,7 @@
 
           $timeout(function() {
 
-            var imageUrl = $scope.cdn + image.name;
+            var imageUrl = vm.cdn + image.name;
 
             $cordovaSocialSharing.share("#functal", null, imageUrl, null).then(function(result) {
 
@@ -358,7 +360,7 @@
 
       //-------------- sharing
 
-      $scope.vote = function(image, isLike) {
+      vm.vote = function(image, isLike) {
 
         var like, dislike;
 
@@ -471,14 +473,14 @@
 
       //----------------- init
 
-      $scope.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
-      $scope.s3 = 'https://s3.amazonaws.com/functal-images/';
+      vm.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
+      vm.s3 = 'https://s3.amazonaws.com/functal-images/';
 
-      $scope.showCount = 6;
+      vm.showCount = 6;
 
-      $scope.images = $localStorage.getObject('images', []);
+      vm.images = $localStorage.getObject('images', []);
 
-      $scope.sorting = $localStorage.getObject('sorting',
+      vm.sorting = $localStorage.getObject('sorting',
         {
           sortBy: 'shuffle',
           desc: true
