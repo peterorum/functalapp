@@ -520,34 +520,28 @@
 	"buffers":
 	[
 		{
+			"contents": "Searching 309 files for \"ng-controller=\"\n\n/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic-angular.js:\n 2666   *\n 2667   * ```html\n 2668:  * <body ng-controller=\"MyCtrl\">\n 2669   *   <ion-nav-bar>\n 2670   *     <button ng-click=\"setNavTitle('banana')\">\n ....\n 3736   *\n 3737   * ```html\n 3738:  * <body ng-controller=\"MainCtrl\">\n 3739   *   <ion-content>\n 3740   *     <button ng-click=\"scrollTop()\">Scroll to Top!</button>\n ....\n 3754   *\n 3755   * ```html\n 3756:  * <body ng-controller=\"MainCtrl\">\n 3757   *   <ion-content delegate-handle=\"mainScroll\">\n 3758   *     <button ng-click=\"scrollMainToTop()\">\n ....\n 3899   *\n 3900   * ```html\n 3901:  * <body ng-controller=\"MainCtrl\">\n 3902   *   <ion-side-menus>\n 3903   *     <ion-side-menu-content>\n ....\n 4131   *\n 4132   * ```html\n 4133:  * <body ng-controller=\"MyCtrl\">\n 4134   *   <ion-tabs>\n 4135   *\n ....\n 5459   *\n 5460   * ````html\n 5461:  * <ion-content ng-controller=\"MyCtrl\">\n 5462   *   <button class=\"button\" ng-click=\"showDeleteButtons()\"></button>\n 5463   *   <ion-list>\n ....\n 10077   * @usage\n 10078   * ```html\n 10079:  * <ion-content ng-controller=\"MyController\">\n 10080   *   <ion-list>\n 10081   *   ....\n .....\n 10435  *\n 10436  * ```html\n 10437: * <ion-list ng-controller=\"MyCtrl\" show-reorder=\"true\">\n 10438  *   <ion-item ng-repeat=\"item in items\">\n 10439  *     Item {{item}}\n .....\n 10617  *\n 10618  * ```html\n 10619: * <ion-list ng-controller=\"MyCtrl\"\n 10620  *           show-delete=\"shouldShowDelete\"\n 10621  *           show-reorder=\"shouldShowReorder\"\n .....\n 10945   *\n 10946   * ```html\n 10947:  * <ion-nav-bar ng-controller=\"MyCtrl\">\n 10948   *   <ion-nav-back-button class=\"button-clear\"\n 10949   *     ng-click=\"myGoBack()\">\n .....\n 11383   *   <!-- The title of the ion-view will be shown on the navbar -->\n 11384   *   <ion-view view-title=\"Home\">\n 11385:  *     <ion-content ng-controller=\"HomeCtrl\">\n 11386   *       <!-- The content of the page -->\n 11387   *       <a href=\"#/music\">Go to music page!</a>\n .....\n 11712   *\n 11713   * ```html\n 11714:  * <ion-content ng-controller=\"MyController\">\n 11715   *   <ion-refresher\n 11716   *     pulling-text=\"Pull to refresh...\"\n .....\n 12240   * <ion-side-menus>\n 12241   *   <!-- Center content -->\n 12242:  *   <ion-side-menu-content ng-controller=\"ContentController\">\n 12243   *   </ion-side-menu-content>\n 12244   *\n\n/Users/peterorum/Projects/functalapp/www/lib/ionic/js/ionic.bundle.js:\n 9434   <example module=\"copyExample\">\n 9435   <file name=\"index.html\">\n 9436:  <div ng-controller=\"ExampleController\">\n 9437   <form novalidate class=\"simple-form\">\n 9438   Name: <input type=\"text\" ng-model=\"user.name\" /><br />\n ....\n 9943   <example module=\"ngAppDemo\">\n 9944     <file name=\"index.html\">\n 9945:    <div ng-controller=\"ngAppDemoController\">\n 9946       I can add: {{a}} + {{b}} =  {{ a+b }}\n 9947     </div>\n ....\n 9960     <file name=\"index.html\">\n 9961     <div ng-app=\"ngAppStrictDemo\" ng-strict-di>\n 9962:        <div ng-controller=\"GoodController1\">\n 9963             I can add: {{a}} + {{b}} =  {{ a+b }}\n 9964  \n ....\n 9969         </div>\n 9970  \n 9971:        <div ng-controller=\"GoodController2\">\n 9972             Name: <input ng-model=\"name\"><br />\n 9973             Hello, {{name}}!\n ....\n 9979         </div>\n 9980  \n 9981:        <div ng-controller=\"BadController\">\n 9982             I can add: {{a}} + {{b}} =  {{ a+b }}\n 9983  \n ....\n 10082   * <html>\n 10083   * <body>\n 10084:  * <div ng-controller=\"WelcomeController\">\n 10085   *   {{greeting}}\n 10086   * </div>\n .....\n 12103   *\n 12104   * ```js\n 12105:  * var $div = $('<div ng-controller=\"MyCtrl\">{{content.label}}</div>');\n 12106   * $(document.body).append($div);\n 12107   *\n .....\n 12981       <example module=\"anchorScrollExample\">\n 12982         <file name=\"index.html\">\n 12983:          <div id=\"scrollArea\" ng-controller=\"ScrollController\">\n 12984             <a ng-click=\"gotoBottom()\">Go to bottom</a>\n 12985             <a id=\"bottom\"></a> You're at the bottom!\n .....\n 13020       <example module=\"anchorScrollOffsetExample\">\n 13021         <file name=\"index.html\">\n 13022:          <div class=\"fixed-header\" ng-controller=\"headerCtrl\">\n 13023             <a href=\"\" ng-click=\"gotoAnchor(x)\" ng-repeat=\"x in [1,2,3,4,5]\">\n 13024               Go to anchor {{x}}\n .....\n 14059     <example module=\"cacheExampleApp\">\n 14060       <file name=\"index.html\">\n 14061:        <div ng-controller=\"CacheController\">\n 14062           <input ng-model=\"newCacheKey\" placeholder=\"Key\">\n 14063           <input ng-model=\"newCacheValue\" placeholder=\"Value\">\n .....\n 15018        }]);\n 15019      </script>\n 15020:     <div ng-controller=\"GreeterController\">\n 15021        <input ng-model=\"name\"> <br>\n 15022        <textarea ng-model=\"html\"></textarea> <br>\n .....\n 17191     <example module=\"documentExample\">\n 17192       <file name=\"index.html\">\n 17193:        <div ng-controller=\"ExampleController\">\n 17194           <p>$document title: <b ng-bind=\"title\"></b></p>\n 17195           <p>window.document title: <b ng-bind=\"windowTitle\"></b></p>\n .....\n 17923  <example module=\"httpExample\">\n 17924  <file name=\"index.html\">\n 17925:   <div ng-controller=\"FetchController\">\n 17926      <select ng-model=\"method\">\n 17927        <option>GET</option>\n .....\n 18614    });\n 18615  </script>\n 18616: <div ng-app=\"App\" ng-controller=\"DemoController as demo\">\n 18617      //demo.label//\n 18618  </div>\n .....\n 19050        *\n 19051        *   <div>\n 19052:       *     <div ng-controller=\"ExampleController\">\n 19053        *       Date format: <input ng-model=\"format\"> <hr/>\n 19054        *       Current time is: <span my-current-time=\"format\"></span>\n .....\n 20179       </file>\n 20180       <file name=\"index.html\">\n 20181:        <div ng-controller=\"LogController\">\n 20182           <p>Reload this page with open console, enter text and hit the log button...</p>\n 20183           Message:\n .....\n 24139   * <example module=\"mySceApp\" deps=\"angular-sanitize.js\">\n 24140   * <file name=\"index.html\">\n 24141:  *   <div ng-controller=\"AppController as myCtrl\">\n 24142   *     <i ng-bind-html=\"myCtrl.explicitlyTrustedHtml\" id=\"explicitlyTrustedHtml\"></i><br><br>\n 24143   *     <b>User comments</b><br>\n .....\n 25094             }]);\n 25095         </script>\n 25096:        <div ng-controller=\"ExampleController\">\n 25097           <input type=\"text\" ng-model=\"greeting\" />\n 25098           <button ng-click=\"doGreeting(greeting)\">ALERT</button>\n .....\n 25189     <example name=\"$filter\" module=\"filterExample\">\n 25190       <file name=\"index.html\">\n 25191:        <div ng-controller=\"MainCtrl\">\n 25192          <h3>{{ originalText }}</h3>\n 25193          <h3>{{ filteredText }}</h3>\n .....\n 25513             }]);\n 25514         </script>\n 25515:        <div ng-controller=\"ExampleController\">\n 25516           <input type=\"number\" ng-model=\"amount\"> <br>\n 25517           default currency symbol ($): <span id=\"currency-default\">{{amount | currency}}</span><br>\n .....\n 25586             }]);\n 25587         </script>\n 25588:        <div ng-controller=\"ExampleController\">\n 25589           Enter number: <input ng-model='val'><br>\n 25590           Default formatting: <span id='number-default'>{{val | number}}</span><br>\n .....\n 26073             }]);\n 26074         </script>\n 26075:        <div ng-controller=\"ExampleController\">\n 26076           Limit {{numbers}} to: <input type=\"number\" step=\"1\" ng-model=\"numLimit\">\n 26077           <p>Output numbers: {{ numbers | limitTo:numLimit }}</p>\n .....\n 26195             }]);\n 26196         </script>\n 26197:        <div ng-controller=\"ExampleController\">\n 26198           <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>\n 26199           <hr/>\n .....\n 26225    <example module=\"orderByExample\">\n 26226      <file name=\"index.html\">\n 26227:       <div ng-controller=\"ExampleController\">\n 26228          <table class=\"friend\">\n 26229            <tr>\n .....\n 27230          }\n 27231         </style>\n 27232:        <form name=\"myForm\" ng-controller=\"FormController\" class=\"my-form\">\n 27233           userType: <input name=\"input\" ng-model=\"userType\" required>\n 27234           <span class=\"error\" ng-show=\"myForm.input.$error.required\">Required!</span><br>\n .....\n 27405               }]);\n 27406           </script>\n 27407:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 27408             Single word: <input type=\"text\" name=\"input\" ng-model=\"example.text\"\n 27409                                 ng-pattern=\"example.word\" required ng-trim=\"false\">\n .....\n 27490              }]);\n 27491         </script>\n 27492:        <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 27493            Pick a date in 2013:\n 27494            <input type=\"date\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 27583            }]);\n 27584        </script>\n 27585:       <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 27586          Pick a date between in 2013:\n 27587          <input type=\"datetime-local\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 27677          }]);\n 27678       </script>\n 27679:      <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 27680          Pick a between 8am and 5pm:\n 27681          <input type=\"time\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 27770          }]);\n 27771        </script>\n 27772:       <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 27773          Pick a date between in 2013:\n 27774          <input id=\"exampleInput\" type=\"week\" name=\"input\" ng-model=\"example.value\"\n .....\n 27863          }]);\n 27864       </script>\n 27865:      <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 27866         Pick a month in 2013:\n 27867         <input id=\"exampleInput\" type=\"month\" name=\"input\" ng-model=\"example.value\"\n .....\n 27962               }]);\n 27963           </script>\n 27964:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 27965             Number: <input type=\"number\" name=\"input\" ng-model=\"example.value\"\n 27966                            min=\"0\" max=\"99\" required>\n .....\n 28052               }]);\n 28053           </script>\n 28054:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 28055             URL: <input type=\"url\" name=\"input\" ng-model=\"url.text\" required>\n 28056             <span class=\"error\" ng-show=\"myForm.input.$error.required\">\n .....\n 28143               }]);\n 28144           </script>\n 28145:            <form name=\"myForm\" ng-controller=\"ExampleController\">\n 28146               Email: <input type=\"email\" name=\"input\" ng-model=\"email.text\" required>\n 28147               <span class=\"error\" ng-show=\"myForm.input.$error.required\">\n .....\n 28216               }]);\n 28217           </script>\n 28218:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 28219             <input type=\"radio\" ng-model=\"color.name\" value=\"red\">  Red <br/>\n 28220             <input type=\"radio\" ng-model=\"color.name\" ng-value=\"specialValue\"> Green <br/>\n .....\n 28266               }]);\n 28267           </script>\n 28268:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 28269             Value1: <input type=\"checkbox\" ng-model=\"checkboxModel.value1\"> <br/>\n 28270             Value2: <input type=\"checkbox\" ng-model=\"checkboxModel.value2\"\n .....\n 28785              }]);\n 28786         </script>\n 28787:        <div ng-controller=\"ExampleController\">\n 28788           <form name=\"myForm\">\n 28789             User name: <input type=\"text\" name=\"userName\" ng-model=\"user.name\" required>\n .....\n 28914              }]);\n 28915         </script>\n 28916:         <form ng-controller=\"ExampleController\">\n 28917            <h2>Which is your favorite?</h2>\n 28918              <label ng-repeat=\"name in names\" for=\"{{name}}\">\n .....\n 28994             }]);\n 28995         </script>\n 28996:        <div ng-controller=\"ExampleController\">\n 28997           Enter name: <input type=\"text\" ng-model=\"name\"><br>\n 28998           Hello <span ng-bind=\"name\"></span>!\n .....\n 29055             }]);\n 29056         </script>\n 29057:        <div ng-controller=\"ExampleController\">\n 29058          Salutation: <input type=\"text\" ng-model=\"salutation\"><br>\n 29059          Name: <input type=\"text\" ng-model=\"name\"><br>\n .....\n 29121     <example module=\"bindHtmlExample\" deps=\"angular-sanitize.js\">\n 29122       <file name=\"index.html\">\n 29123:        <div ng-controller=\"ExampleController\">\n 29124          <p ng-bind-html=\"myHTML\"></p>\n 29125         </div>\n .....\n 29203   *         }]);\n 29204   *     </script>\n 29205:  *     <div ng-controller=\"ExampleController\">\n 29206   *       <input type=\"checkbox\" ng-model=\"confirmed\" ng-change=\"change()\" id=\"ng-change-example1\" />\n 29207   *       <input type=\"checkbox\" ng-model=\"confirmed\" id=\"ng-change-example2\" />\n .....\n 29692   *\n 29693   * The controller instance can be published into a scope property by specifying\n 29694:  * `ng-controller=\"as propertyName\"`.\n 29695   *\n 29696   * If the current `$controllerProvider` is configured to use globals (via\n .....\n 29707   *\n 29708   * * one binds methods and properties directly onto the controller using `this`:\n 29709:  * `ng-controller=\"SettingsController1 as settings\"`\n 29710   * * one injects `$scope` into the controller:\n 29711:  * `ng-controller=\"SettingsController2\"`\n 29712   *\n 29713   * The second option is more common in the Angular community, and is generally used in boilerplates\n .....\n 29726   * <example name=\"ngControllerAs\" module=\"controllerAsExample\">\n 29727   *   <file name=\"index.html\">\n 29728:  *    <div id=\"ctrl-as-exmpl\" ng-controller=\"SettingsController1 as settings\">\n 29729   *      Name: <input type=\"text\" ng-model=\"settings.name\"/>\n 29730   *      [ <a href=\"\" ng-click=\"settings.greet()\">greet</a> ]<br/>\n .....\n 29809   * <example name=\"ngController\" module=\"controllerExample\">\n 29810   *  <file name=\"index.html\">\n 29811:  *   <div id=\"ctrl-exmpl\" ng-controller=\"SettingsController2\">\n 29812   *     Name: <input type=\"text\" ng-model=\"name\"/>\n 29813   *     [ <a href=\"\" ng-click=\"greet()\">greet</a> ]<br/>\n .....\n 29952        <example name=\"example.csp\" module=\"cspExample\" ng-csp=\"true\">\n 29953          <file name=\"index.html\">\n 29954:           <div ng-controller=\"MainController as ctrl\">\n 29955              <div>\n 29956                <button ng-click=\"ctrl.inc()\" id=\"inc\">Increment</button>\n .....\n 30424            }]);\n 30425        </script>\n 30426:       <form ng-submit=\"submit()\" ng-controller=\"ExampleController\">\n 30427          Enter text and hit enter:\n 30428          <input type=\"text\" ng-model=\"text\" name=\"text\" />\n .....\n 30724    <example module=\"includeExample\" deps=\"angular-animate.js\" animations=\"true\">\n 30725      <file name=\"index.html\">\n 30726:      <div ng-controller=\"ExampleController\">\n 30727         <select ng-model=\"template\" ng-options=\"t.name for t in templates\">\n 30728          <option value=\"\">(blank)</option>\n .....\n 31010         }]);\n 31011     </script>\n 31012:    <div ng-controller=\"ExampleController\">\n 31013       <div ng-repeat=\"innerList in list\" ng-init=\"outerIndex = $index\">\n 31014         <div ng-repeat=\"value in innerList\" ng-init=\"innerIndex = $index\">\n .....\n 31068   *   </file>\n 31069   *   <file name=\"index.html\">\n 31070:  *    <form name=\"myForm\" ng-controller=\"ExampleController\">\n 31071   *      List: <input name=\"namesInput\" ng-model=\"names\" ng-list required>\n 31072   *      <span class=\"error\" ng-show=\"myForm.namesInput.$error.required\">\n .....\n 31632     *   </file>\n 31633     *   <file name=\"index.html\">\n 31634:    *     <div ng-controller=\"CancelUpdateController\">\n 31635     *       <p>Try typing something in each input.  See that the model only updates when you\n 31636     *          blur off the input.\n .....\n 32109         Update input to see transitions when valid/invalid.\n 32110         Integer is a valid value.\n 32111:        <form name=\"testForm\" ng-controller=\"ExampleController\">\n 32112           <input ng-model=\"val\" ng-pattern=\"/^\\d+$/\" name=\"anim\" class=\"my-input\" />\n 32113         </form>\n .....\n 32138   * <example name=\"ngModel-getter-setter\" module=\"getterSetterExample\">\n 32139       <file name=\"index.html\">\n 32140:        <div ng-controller=\"ExampleController\">\n 32141           <form name=\"userForm\">\n 32142             Name:\n .....\n 32271    <example name=\"ngModelOptions-directive-blur\" module=\"optionsExample\">\n 32272      <file name=\"index.html\">\n 32273:       <div ng-controller=\"ExampleController\">\n 32274          <form name=\"userForm\">\n 32275            Name:\n .....\n 32326    <example name=\"ngModelOptions-directive-debounce\" module=\"optionsExample\">\n 32327      <file name=\"index.html\">\n 32328:       <div ng-controller=\"ExampleController\">\n 32329          <form name=\"userForm\">\n 32330            Name:\n .....\n 32349    <example name=\"ngModelOptions-directive-getter-setter\" module=\"getterSetterExample\">\n 32350      <file name=\"index.html\">\n 32351:       <div ng-controller=\"ExampleController\">\n 32352          <form name=\"userForm\">\n 32353            Name:\n .....\n 32633              }]);\n 32634          </script>\n 32635:         <div ng-controller=\"ExampleController\">\n 32636            Person 1:<input type=\"text\" ng-model=\"person1\" value=\"Igor\" /><br/>\n 32637            Person 2:<input type=\"text\" ng-model=\"person2\" value=\"Misko\" /><br/>\n .....\n 33671    <example module=\"switchExample\" deps=\"angular-animate.js\" animations=\"true\">\n 33672      <file name=\"index.html\">\n 33673:       <div ng-controller=\"ExampleController\">\n 33674          <select ng-model=\"selection\" ng-options=\"item for item in items\">\n 33675          </select>\n .....\n 33852           }]);\n 33853         </script>\n 33854:        <div ng-controller=\"ExampleController\">\n 33855           <input ng-model=\"title\"> <br/>\n 33856           <textarea ng-model=\"text\"></textarea> <br/>\n .....\n 34076            }]);\n 34077          </script>\n 34078:         <div ng-controller=\"ExampleController\">\n 34079            <ul>\n 34080              <li ng-repeat=\"color in colors\">\n .....\n 37054             }]);\n 37055       </script>\n 37056:      <div ng-controller=\"ExampleController\">\n 37057          Snippet: <textarea ng-model=\"snippet\" cols=\"60\" rows=\"3\"></textarea>\n 37058         <table>\n .....\n 37543             }]);\n 37544         </script>\n 37545:        <div ng-controller=\"ExampleController\">\n 37546         Snippet: <textarea ng-model=\"snippet\" cols=\"60\" rows=\"3\"></textarea>\n 37547         <table>\n .....\n 44576   *\n 44577   * ```html\n 44578:  * <body ng-controller=\"MyCtrl\">\n 44579   *   <ion-nav-bar>\n 44580   *     <button ng-click=\"setNavTitle('banana')\">\n .....\n 45646   *\n 45647   * ```html\n 45648:  * <body ng-controller=\"MainCtrl\">\n 45649   *   <ion-content>\n 45650   *     <button ng-click=\"scrollTop()\">Scroll to Top!</button>\n .....\n 45664   *\n 45665   * ```html\n 45666:  * <body ng-controller=\"MainCtrl\">\n 45667   *   <ion-content delegate-handle=\"mainScroll\">\n 45668   *     <button ng-click=\"scrollMainToTop()\">\n .....\n 45809   *\n 45810   * ```html\n 45811:  * <body ng-controller=\"MainCtrl\">\n 45812   *   <ion-side-menus>\n 45813   *     <ion-side-menu-content>\n .....\n 46041   *\n 46042   * ```html\n 46043:  * <body ng-controller=\"MyCtrl\">\n 46044   *   <ion-tabs>\n 46045   *\n .....\n 47369   *\n 47370   * ````html\n 47371:  * <ion-content ng-controller=\"MyCtrl\">\n 47372   *   <button class=\"button\" ng-click=\"showDeleteButtons()\"></button>\n 47373   *   <ion-list>\n .....\n 51987   * @usage\n 51988   * ```html\n 51989:  * <ion-content ng-controller=\"MyController\">\n 51990   *   <ion-list>\n 51991   *   ....\n .....\n 52345  *\n 52346  * ```html\n 52347: * <ion-list ng-controller=\"MyCtrl\" show-reorder=\"true\">\n 52348  *   <ion-item ng-repeat=\"item in items\">\n 52349  *     Item {{item}}\n .....\n 52527  *\n 52528  * ```html\n 52529: * <ion-list ng-controller=\"MyCtrl\"\n 52530  *           show-delete=\"shouldShowDelete\"\n 52531  *           show-reorder=\"shouldShowReorder\"\n .....\n 52855   *\n 52856   * ```html\n 52857:  * <ion-nav-bar ng-controller=\"MyCtrl\">\n 52858   *   <ion-nav-back-button class=\"button-clear\"\n 52859   *     ng-click=\"myGoBack()\">\n .....\n 53293   *   <!-- The title of the ion-view will be shown on the navbar -->\n 53294   *   <ion-view view-title=\"Home\">\n 53295:  *     <ion-content ng-controller=\"HomeCtrl\">\n 53296   *       <!-- The content of the page -->\n 53297   *       <a href=\"#/music\">Go to music page!</a>\n .....\n 53622   *\n 53623   * ```html\n 53624:  * <ion-content ng-controller=\"MyController\">\n 53625   *   <ion-refresher\n 53626   *     pulling-text=\"Pull to refresh...\"\n .....\n 54150   * <ion-side-menus>\n 54151   *   <!-- Center content -->\n 54152:  *   <ion-side-menu-content ng-controller=\"ContentController\">\n 54153   *   </ion-side-menu-content>\n 54154   *\n\n/Users/peterorum/Projects/functalapp/www/lib/ionic/js/angular/angular-sanitize.js:\n   72             }]);\n   73       </script>\n   74:      <div ng-controller=\"ExampleController\">\n   75          Snippet: <textarea ng-model=\"snippet\" cols=\"60\" rows=\"3\"></textarea>\n   76         <table>\n   ..\n  561             }]);\n  562         </script>\n  563:        <div ng-controller=\"ExampleController\">\n  564         Snippet: <textarea ng-model=\"snippet\" cols=\"60\" rows=\"3\"></textarea>\n  565         <table>\n\n/Users/peterorum/Projects/functalapp/www/lib/ionic/js/angular/angular.js:\n  735   <example module=\"copyExample\">\n  736   <file name=\"index.html\">\n  737:  <div ng-controller=\"ExampleController\">\n  738   <form novalidate class=\"simple-form\">\n  739   Name: <input type=\"text\" ng-model=\"user.name\" /><br />\n  ...\n 1244   <example module=\"ngAppDemo\">\n 1245     <file name=\"index.html\">\n 1246:    <div ng-controller=\"ngAppDemoController\">\n 1247       I can add: {{a}} + {{b}} =  {{ a+b }}\n 1248     </div>\n ....\n 1261     <file name=\"index.html\">\n 1262     <div ng-app=\"ngAppStrictDemo\" ng-strict-di>\n 1263:        <div ng-controller=\"GoodController1\">\n 1264             I can add: {{a}} + {{b}} =  {{ a+b }}\n 1265  \n ....\n 1270         </div>\n 1271  \n 1272:        <div ng-controller=\"GoodController2\">\n 1273             Name: <input ng-model=\"name\"><br />\n 1274             Hello, {{name}}!\n ....\n 1280         </div>\n 1281  \n 1282:        <div ng-controller=\"BadController\">\n 1283             I can add: {{a}} + {{b}} =  {{ a+b }}\n 1284  \n ....\n 1383   * <html>\n 1384   * <body>\n 1385:  * <div ng-controller=\"WelcomeController\">\n 1386   *   {{greeting}}\n 1387   * </div>\n ....\n 3404   *\n 3405   * ```js\n 3406:  * var $div = $('<div ng-controller=\"MyCtrl\">{{content.label}}</div>');\n 3407   * $(document.body).append($div);\n 3408   *\n ....\n 4282       <example module=\"anchorScrollExample\">\n 4283         <file name=\"index.html\">\n 4284:          <div id=\"scrollArea\" ng-controller=\"ScrollController\">\n 4285             <a ng-click=\"gotoBottom()\">Go to bottom</a>\n 4286             <a id=\"bottom\"></a> You're at the bottom!\n ....\n 4321       <example module=\"anchorScrollOffsetExample\">\n 4322         <file name=\"index.html\">\n 4323:          <div class=\"fixed-header\" ng-controller=\"headerCtrl\">\n 4324             <a href=\"\" ng-click=\"gotoAnchor(x)\" ng-repeat=\"x in [1,2,3,4,5]\">\n 4325               Go to anchor {{x}}\n ....\n 5360     <example module=\"cacheExampleApp\">\n 5361       <file name=\"index.html\">\n 5362:        <div ng-controller=\"CacheController\">\n 5363           <input ng-model=\"newCacheKey\" placeholder=\"Key\">\n 5364           <input ng-model=\"newCacheValue\" placeholder=\"Value\">\n ....\n 6319        }]);\n 6320      </script>\n 6321:     <div ng-controller=\"GreeterController\">\n 6322        <input ng-model=\"name\"> <br>\n 6323        <textarea ng-model=\"html\"></textarea> <br>\n ....\n 8492     <example module=\"documentExample\">\n 8493       <file name=\"index.html\">\n 8494:        <div ng-controller=\"ExampleController\">\n 8495           <p>$document title: <b ng-bind=\"title\"></b></p>\n 8496           <p>window.document title: <b ng-bind=\"windowTitle\"></b></p>\n ....\n 9224  <example module=\"httpExample\">\n 9225  <file name=\"index.html\">\n 9226:   <div ng-controller=\"FetchController\">\n 9227      <select ng-model=\"method\">\n 9228        <option>GET</option>\n ....\n 9915    });\n 9916  </script>\n 9917: <div ng-app=\"App\" ng-controller=\"DemoController as demo\">\n 9918      //demo.label//\n 9919  </div>\n ....\n 10351        *\n 10352        *   <div>\n 10353:       *     <div ng-controller=\"ExampleController\">\n 10354        *       Date format: <input ng-model=\"format\"> <hr/>\n 10355        *       Current time is: <span my-current-time=\"format\"></span>\n .....\n 11480       </file>\n 11481       <file name=\"index.html\">\n 11482:        <div ng-controller=\"LogController\">\n 11483           <p>Reload this page with open console, enter text and hit the log button...</p>\n 11484           Message:\n .....\n 15440   * <example module=\"mySceApp\" deps=\"angular-sanitize.js\">\n 15441   * <file name=\"index.html\">\n 15442:  *   <div ng-controller=\"AppController as myCtrl\">\n 15443   *     <i ng-bind-html=\"myCtrl.explicitlyTrustedHtml\" id=\"explicitlyTrustedHtml\"></i><br><br>\n 15444   *     <b>User comments</b><br>\n .....\n 16395             }]);\n 16396         </script>\n 16397:        <div ng-controller=\"ExampleController\">\n 16398           <input type=\"text\" ng-model=\"greeting\" />\n 16399           <button ng-click=\"doGreeting(greeting)\">ALERT</button>\n .....\n 16490     <example name=\"$filter\" module=\"filterExample\">\n 16491       <file name=\"index.html\">\n 16492:        <div ng-controller=\"MainCtrl\">\n 16493          <h3>{{ originalText }}</h3>\n 16494          <h3>{{ filteredText }}</h3>\n .....\n 16814             }]);\n 16815         </script>\n 16816:        <div ng-controller=\"ExampleController\">\n 16817           <input type=\"number\" ng-model=\"amount\"> <br>\n 16818           default currency symbol ($): <span id=\"currency-default\">{{amount | currency}}</span><br>\n .....\n 16887             }]);\n 16888         </script>\n 16889:        <div ng-controller=\"ExampleController\">\n 16890           Enter number: <input ng-model='val'><br>\n 16891           Default formatting: <span id='number-default'>{{val | number}}</span><br>\n .....\n 17374             }]);\n 17375         </script>\n 17376:        <div ng-controller=\"ExampleController\">\n 17377           Limit {{numbers}} to: <input type=\"number\" step=\"1\" ng-model=\"numLimit\">\n 17378           <p>Output numbers: {{ numbers | limitTo:numLimit }}</p>\n .....\n 17496             }]);\n 17497         </script>\n 17498:        <div ng-controller=\"ExampleController\">\n 17499           <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>\n 17500           <hr/>\n .....\n 17526    <example module=\"orderByExample\">\n 17527      <file name=\"index.html\">\n 17528:       <div ng-controller=\"ExampleController\">\n 17529          <table class=\"friend\">\n 17530            <tr>\n .....\n 18531          }\n 18532         </style>\n 18533:        <form name=\"myForm\" ng-controller=\"FormController\" class=\"my-form\">\n 18534           userType: <input name=\"input\" ng-model=\"userType\" required>\n 18535           <span class=\"error\" ng-show=\"myForm.input.$error.required\">Required!</span><br>\n .....\n 18706               }]);\n 18707           </script>\n 18708:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 18709             Single word: <input type=\"text\" name=\"input\" ng-model=\"example.text\"\n 18710                                 ng-pattern=\"example.word\" required ng-trim=\"false\">\n .....\n 18791              }]);\n 18792         </script>\n 18793:        <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 18794            Pick a date in 2013:\n 18795            <input type=\"date\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 18884            }]);\n 18885        </script>\n 18886:       <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 18887          Pick a date between in 2013:\n 18888          <input type=\"datetime-local\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 18978          }]);\n 18979       </script>\n 18980:      <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 18981          Pick a between 8am and 5pm:\n 18982          <input type=\"time\" id=\"exampleInput\" name=\"input\" ng-model=\"example.value\"\n .....\n 19071          }]);\n 19072        </script>\n 19073:       <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 19074          Pick a date between in 2013:\n 19075          <input id=\"exampleInput\" type=\"week\" name=\"input\" ng-model=\"example.value\"\n .....\n 19164          }]);\n 19165       </script>\n 19166:      <form name=\"myForm\" ng-controller=\"DateController as dateCtrl\">\n 19167         Pick a month in 2013:\n 19168         <input id=\"exampleInput\" type=\"month\" name=\"input\" ng-model=\"example.value\"\n .....\n 19263               }]);\n 19264           </script>\n 19265:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 19266             Number: <input type=\"number\" name=\"input\" ng-model=\"example.value\"\n 19267                            min=\"0\" max=\"99\" required>\n .....\n 19353               }]);\n 19354           </script>\n 19355:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 19356             URL: <input type=\"url\" name=\"input\" ng-model=\"url.text\" required>\n 19357             <span class=\"error\" ng-show=\"myForm.input.$error.required\">\n .....\n 19444               }]);\n 19445           </script>\n 19446:            <form name=\"myForm\" ng-controller=\"ExampleController\">\n 19447               Email: <input type=\"email\" name=\"input\" ng-model=\"email.text\" required>\n 19448               <span class=\"error\" ng-show=\"myForm.input.$error.required\">\n .....\n 19517               }]);\n 19518           </script>\n 19519:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 19520             <input type=\"radio\" ng-model=\"color.name\" value=\"red\">  Red <br/>\n 19521             <input type=\"radio\" ng-model=\"color.name\" ng-value=\"specialValue\"> Green <br/>\n .....\n 19567               }]);\n 19568           </script>\n 19569:          <form name=\"myForm\" ng-controller=\"ExampleController\">\n 19570             Value1: <input type=\"checkbox\" ng-model=\"checkboxModel.value1\"> <br/>\n 19571             Value2: <input type=\"checkbox\" ng-model=\"checkboxModel.value2\"\n .....\n 20086              }]);\n 20087         </script>\n 20088:        <div ng-controller=\"ExampleController\">\n 20089           <form name=\"myForm\">\n 20090             User name: <input type=\"text\" name=\"userName\" ng-model=\"user.name\" required>\n .....\n 20215              }]);\n 20216         </script>\n 20217:         <form ng-controller=\"ExampleController\">\n 20218            <h2>Which is your favorite?</h2>\n 20219              <label ng-repeat=\"name in names\" for=\"{{name}}\">\n .....\n 20295             }]);\n 20296         </script>\n 20297:        <div ng-controller=\"ExampleController\">\n 20298           Enter name: <input type=\"text\" ng-model=\"name\"><br>\n 20299           Hello <span ng-bind=\"name\"></span>!\n .....\n 20356             }]);\n 20357         </script>\n 20358:        <div ng-controller=\"ExampleController\">\n 20359          Salutation: <input type=\"text\" ng-model=\"salutation\"><br>\n 20360          Name: <input type=\"text\" ng-model=\"name\"><br>\n .....\n 20422     <example module=\"bindHtmlExample\" deps=\"angular-sanitize.js\">\n 20423       <file name=\"index.html\">\n 20424:        <div ng-controller=\"ExampleController\">\n 20425          <p ng-bind-html=\"myHTML\"></p>\n 20426         </div>\n .....\n 20504   *         }]);\n 20505   *     </script>\n 20506:  *     <div ng-controller=\"ExampleController\">\n 20507   *       <input type=\"checkbox\" ng-model=\"confirmed\" ng-change=\"change()\" id=\"ng-change-example1\" />\n 20508   *       <input type=\"checkbox\" ng-model=\"confirmed\" id=\"ng-change-example2\" />\n .....\n 20993   *\n 20994   * The controller instance can be published into a scope property by specifying\n 20995:  * `ng-controller=\"as propertyName\"`.\n 20996   *\n 20997   * If the current `$controllerProvider` is configured to use globals (via\n .....\n 21008   *\n 21009   * * one binds methods and properties directly onto the controller using `this`:\n 21010:  * `ng-controller=\"SettingsController1 as settings\"`\n 21011   * * one injects `$scope` into the controller:\n 21012:  * `ng-controller=\"SettingsController2\"`\n 21013   *\n 21014   * The second option is more common in the Angular community, and is generally used in boilerplates\n .....\n 21027   * <example name=\"ngControllerAs\" module=\"controllerAsExample\">\n 21028   *   <file name=\"index.html\">\n 21029:  *    <div id=\"ctrl-as-exmpl\" ng-controller=\"SettingsController1 as settings\">\n 21030   *      Name: <input type=\"text\" ng-model=\"settings.name\"/>\n 21031   *      [ <a href=\"\" ng-click=\"settings.greet()\">greet</a> ]<br/>\n .....\n 21110   * <example name=\"ngController\" module=\"controllerExample\">\n 21111   *  <file name=\"index.html\">\n 21112:  *   <div id=\"ctrl-exmpl\" ng-controller=\"SettingsController2\">\n 21113   *     Name: <input type=\"text\" ng-model=\"name\"/>\n 21114   *     [ <a href=\"\" ng-click=\"greet()\">greet</a> ]<br/>\n .....\n 21253        <example name=\"example.csp\" module=\"cspExample\" ng-csp=\"true\">\n 21254          <file name=\"index.html\">\n 21255:           <div ng-controller=\"MainController as ctrl\">\n 21256              <div>\n 21257                <button ng-click=\"ctrl.inc()\" id=\"inc\">Increment</button>\n .....\n 21725            }]);\n 21726        </script>\n 21727:       <form ng-submit=\"submit()\" ng-controller=\"ExampleController\">\n 21728          Enter text and hit enter:\n 21729          <input type=\"text\" ng-model=\"text\" name=\"text\" />\n .....\n 22025    <example module=\"includeExample\" deps=\"angular-animate.js\" animations=\"true\">\n 22026      <file name=\"index.html\">\n 22027:      <div ng-controller=\"ExampleController\">\n 22028         <select ng-model=\"template\" ng-options=\"t.name for t in templates\">\n 22029          <option value=\"\">(blank)</option>\n .....\n 22311         }]);\n 22312     </script>\n 22313:    <div ng-controller=\"ExampleController\">\n 22314       <div ng-repeat=\"innerList in list\" ng-init=\"outerIndex = $index\">\n 22315         <div ng-repeat=\"value in innerList\" ng-init=\"innerIndex = $index\">\n .....\n 22369   *   </file>\n 22370   *   <file name=\"index.html\">\n 22371:  *    <form name=\"myForm\" ng-controller=\"ExampleController\">\n 22372   *      List: <input name=\"namesInput\" ng-model=\"names\" ng-list required>\n 22373   *      <span class=\"error\" ng-show=\"myForm.namesInput.$error.required\">\n .....\n 22933     *   </file>\n 22934     *   <file name=\"index.html\">\n 22935:    *     <div ng-controller=\"CancelUpdateController\">\n 22936     *       <p>Try typing something in each input.  See that the model only updates when you\n 22937     *          blur off the input.\n .....\n 23410         Update input to see transitions when valid/invalid.\n 23411         Integer is a valid value.\n 23412:        <form name=\"testForm\" ng-controller=\"ExampleController\">\n 23413           <input ng-model=\"val\" ng-pattern=\"/^\\d+$/\" name=\"anim\" class=\"my-input\" />\n 23414         </form>\n .....\n 23439   * <example name=\"ngModel-getter-setter\" module=\"getterSetterExample\">\n 23440       <file name=\"index.html\">\n 23441:        <div ng-controller=\"ExampleController\">\n 23442           <form name=\"userForm\">\n 23443             Name:\n .....\n 23572    <example name=\"ngModelOptions-directive-blur\" module=\"optionsExample\">\n 23573      <file name=\"index.html\">\n 23574:       <div ng-controller=\"ExampleController\">\n 23575          <form name=\"userForm\">\n 23576            Name:\n .....\n 23627    <example name=\"ngModelOptions-directive-debounce\" module=\"optionsExample\">\n 23628      <file name=\"index.html\">\n 23629:       <div ng-controller=\"ExampleController\">\n 23630          <form name=\"userForm\">\n 23631            Name:\n .....\n 23650    <example name=\"ngModelOptions-directive-getter-setter\" module=\"getterSetterExample\">\n 23651      <file name=\"index.html\">\n 23652:       <div ng-controller=\"ExampleController\">\n 23653          <form name=\"userForm\">\n 23654            Name:\n .....\n 23934              }]);\n 23935          </script>\n 23936:         <div ng-controller=\"ExampleController\">\n 23937            Person 1:<input type=\"text\" ng-model=\"person1\" value=\"Igor\" /><br/>\n 23938            Person 2:<input type=\"text\" ng-model=\"person2\" value=\"Misko\" /><br/>\n .....\n 24972    <example module=\"switchExample\" deps=\"angular-animate.js\" animations=\"true\">\n 24973      <file name=\"index.html\">\n 24974:       <div ng-controller=\"ExampleController\">\n 24975          <select ng-model=\"selection\" ng-options=\"item for item in items\">\n 24976          </select>\n .....\n 25153           }]);\n 25154         </script>\n 25155:        <div ng-controller=\"ExampleController\">\n 25156           <input ng-model=\"title\"> <br/>\n 25157           <textarea ng-model=\"text\"></textarea> <br/>\n .....\n 25377            }]);\n 25378          </script>\n 25379:         <div ng-controller=\"ExampleController\">\n 25380            <ul>\n 25381              <li ng-repeat=\"color in colors\">\n\n154 matches across 4 files\n\n\nSearching 309 files for \"ImagesCtrl\"\n\n/Users/peterorum/Projects/functalapp/www/js/app.js:\n   54                      {\n   55                          templateUrl: 'templates/images.html',\n   56:                         controller: 'ImagesCtrl'\n   57                      }\n   58                  }\n\n/Users/peterorum/Projects/functalapp/www/js/controllers.js:\n    8    module.controller('AppCtrl', [function() {}]);\n    9  \n   10:   module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$scope', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',\n   11      function(functalData, $window, $timeout, $scope, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {\n   12  \n\n2 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 37967,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "www/js/app.js",
+			"settings":
+			{
+				"buffer_size": 2477,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 14413,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/help.html",
-			"settings":
-			{
-				"buffer_size": 3082,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/images.html",
-			"settings":
-			{
-				"buffer_size": 3038,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/style.css",
-			"settings":
-			{
-				"buffer_size": 499,
+				"buffer_size": 10444,
 				"line_ending": "Unix"
 			}
 		}
@@ -559,21 +553,41 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "rem",
+		"height": 167.0,
+		"last_filter": "htmlpre",
 		"selected_items":
 		[
+			[
+				"htmlpre",
+				"HTMLPrettify"
+			],
+			[
+				"confl",
+				"FindKeyConflicts: All Key Maps to Quick Panel"
+			],
+			[
+				"conf",
+				"FindKeyConflicts: Multiple Package Conflicts"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
 			[
 				"rem",
 				"Package Control: Remove Package"
 			],
 			[
-				"find",
-				"FindKeyConflicts: (Direct) Conflicts to Buffer"
+				"lint",
+				"SublimeLinter: Lint This View"
 			],
 			[
-				"in",
-				"Package Control: Install Package"
+				"htmlb",
+				"HTMLBeautify"
+			],
+			[
+				"find",
+				"FindKeyConflicts: (Direct) Conflicts to Buffer"
 			],
 			[
 				"ssmd",
@@ -771,6 +785,8 @@
 		"height": 186.0,
 		"history":
 		[
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
 			"os.path.exists(\"/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/pylint/lint.py\")",
 			"os.path.exists(\"/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/pylint/lint.pyw\")",
 			"os.path.exists(\"/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/pylint/lint.py\")",
@@ -800,26 +816,29 @@
 	"expanded_folders":
 	[
 		"/Users/peterorum/Projects/functalapp",
-		"/Users/peterorum/Projects/functalapp/resources",
 		"/Users/peterorum/Projects/functalapp/www",
-		"/Users/peterorum/Projects/functalapp/www/css",
-		"/Users/peterorum/Projects/functalapp/www/img",
 		"/Users/peterorum/Projects/functalapp/www/js",
 		"/Users/peterorum/Projects/functalapp/www/templates"
 	],
 	"file_history":
 	[
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/peterorum/Projects/functalapp/www/templates/help.html",
+		"/Users/peterorum/Projects/functalapp/config.xml",
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/peterorum/Projects/functalapp/www/js/controllers.js",
+		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
 		"/Users/peterorum/Projects/functalapp/www/css/style.css",
+		"/Users/peterorum/Projects/functalapp/www/templates/menu.html",
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/Users/peterorum/Library/Application Support/Sublime Text 3/Packages/HTMLBeautify/HTMLBeautify.sublime-settings",
 		"/Users/peterorum/Projects/functalapp/.gitignore",
 		"/Users/peterorum/Projects/functalapp/www/js/app.js",
-		"/Users/peterorum/Projects/functalapp/www/templates/menu.html",
-		"/Users/peterorum/Projects/functalapp/www/templates/images.html",
-		"/Users/peterorum/Projects/functalapp/www/templates/help.html",
 		"/Users/peterorum/Projects/functalapp/www/index.html",
 		"/Users/peterorum/Projects/functalapp/www/js/services.js",
 		"/Users/peterorum/Projects/functalapp/www/templates/side-menu.html",
-		"/Users/peterorum/Projects/functalapp/config.xml",
 		"/Users/peterorum/Projects/functalapp/www/js/utils.js",
 		"/Users/peterorum/Projects/functalapp/resources/make-screenshots.sh",
 		"/Users/peterorum/Projects/functal.bfg-report/2015-06-21/12-53-28/object-id-map.old-new.txt",
@@ -930,13 +949,7 @@
 		"/Users/peterorum/Projects/functal/color.js",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523060522095.json",
 		"/Users/peterorum/Projects/functal/functals/small/functal-20150523060156926.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523060031275.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523060218423.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523055909037.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523055028114.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523054555112.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523054517379.json",
-		"/Users/peterorum/Projects/functal/functals/small/functal-20150523053223640.json"
+		"/Users/peterorum/Projects/functal/functals/small/functal-20150523060031275.json"
 	],
 	"find":
 	{
@@ -966,6 +979,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ImagesCtrl",
+			"ng-controller=",
+			"controller",
+			"device",
+			"dev",
+			"    <",
+			"These",
+			"alt+shift",
+			"shift+super+w",
+			"tag",
+			"select.*tag",
+			"with",
+			"wrap",
 			"location='yes'",
 			"appctrl",
 			"togglel",
@@ -1080,20 +1106,7 @@
 			".av",
 			"hslstd",
 			"sampleCount",
-			"solid",
-			"calcVariation",
-			"ok =",
-			"getMinHslStdDevs",
-			"getHslMinStdDevs",
-			"hsk",
-			"stdde",
-			"minHslStdDev",
-			"minl",
-			"canBeDarkened",
-			"getLightness",
-			"canBeDarkened",
-			"mainHue",
-			"hslStdDev"
+			"solid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1178,24 +1191,693 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14413,
+						"buffer_size": 37967,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										158,
+										172
+									],
+									[
+										314,
+										328
+									],
+									[
+										485,
+										499
+									],
+									[
+										668,
+										682
+									],
+									[
+										811,
+										825
+									],
+									[
+										926,
+										940
+									],
+									[
+										1116,
+										1130
+									],
+									[
+										1243,
+										1257
+									],
+									[
+										1419,
+										1433
+									],
+									[
+										1607,
+										1621
+									],
+									[
+										1877,
+										1891
+									],
+									[
+										2071,
+										2085
+									],
+									[
+										2286,
+										2300
+									],
+									[
+										2527,
+										2541
+									],
+									[
+										2764,
+										2778
+									],
+									[
+										2982,
+										2996
+									],
+									[
+										3133,
+										3147
+									],
+									[
+										3309,
+										3323
+									],
+									[
+										3462,
+										3476
+									],
+									[
+										3606,
+										3620
+									],
+									[
+										3846,
+										3860
+									],
+									[
+										4152,
+										4166
+									],
+									[
+										4416,
+										4430
+									],
+									[
+										4650,
+										4664
+									],
+									[
+										4896,
+										4910
+									],
+									[
+										5167,
+										5181
+									],
+									[
+										5339,
+										5353
+									],
+									[
+										5493,
+										5507
+									],
+									[
+										5759,
+										5773
+									],
+									[
+										6040,
+										6054
+									],
+									[
+										6299,
+										6313
+									],
+									[
+										6589,
+										6603
+									],
+									[
+										6779,
+										6793
+									],
+									[
+										7059,
+										7073
+									],
+									[
+										7319,
+										7333
+									],
+									[
+										7593,
+										7607
+									],
+									[
+										7843,
+										7857
+									],
+									[
+										8024,
+										8038
+									],
+									[
+										8343,
+										8357
+									],
+									[
+										8649,
+										8663
+									],
+									[
+										8913,
+										8927
+									],
+									[
+										9187,
+										9201
+									],
+									[
+										9452,
+										9466
+									],
+									[
+										9716,
+										9730
+									],
+									[
+										9985,
+										9999
+									],
+									[
+										10264,
+										10278
+									],
+									[
+										10562,
+										10576
+									],
+									[
+										10868,
+										10882
+									],
+									[
+										11183,
+										11197
+									],
+									[
+										11466,
+										11480
+									],
+									[
+										11714,
+										11728
+									],
+									[
+										11945,
+										11959
+									],
+									[
+										12178,
+										12192
+									],
+									[
+										12487,
+										12501
+									],
+									[
+										12666,
+										12680
+									],
+									[
+										13016,
+										13030
+									],
+									[
+										13262,
+										13276
+									],
+									[
+										13378,
+										13392
+									],
+									[
+										13689,
+										13703
+									],
+									[
+										14026,
+										14040
+									],
+									[
+										14333,
+										14347
+									],
+									[
+										14574,
+										14588
+									],
+									[
+										14867,
+										14881
+									],
+									[
+										15099,
+										15113
+									],
+									[
+										15395,
+										15409
+									],
+									[
+										15685,
+										15699
+									],
+									[
+										16019,
+										16033
+									],
+									[
+										16313,
+										16327
+									],
+									[
+										16557,
+										16571
+									],
+									[
+										16803,
+										16817
+									],
+									[
+										17059,
+										17073
+									],
+									[
+										17236,
+										17250
+									],
+									[
+										17594,
+										17608
+									],
+									[
+										17811,
+										17825
+									],
+									[
+										18032,
+										18046
+									],
+									[
+										18215,
+										18229
+									],
+									[
+										18434,
+										18448
+									],
+									[
+										18630,
+										18644
+									],
+									[
+										18792,
+										18806
+									],
+									[
+										18969,
+										18983
+									],
+									[
+										19158,
+										19172
+									],
+									[
+										19307,
+										19321
+									],
+									[
+										19428,
+										19442
+									],
+									[
+										19621,
+										19635
+									],
+									[
+										19748,
+										19762
+									],
+									[
+										19924,
+										19938
+									],
+									[
+										20112,
+										20126
+									],
+									[
+										20382,
+										20396
+									],
+									[
+										20576,
+										20590
+									],
+									[
+										20791,
+										20805
+									],
+									[
+										21021,
+										21035
+									],
+									[
+										21234,
+										21248
+									],
+									[
+										21534,
+										21548
+									],
+									[
+										21771,
+										21785
+									],
+									[
+										21989,
+										22003
+									],
+									[
+										22140,
+										22154
+									],
+									[
+										22316,
+										22330
+									],
+									[
+										22466,
+										22480
+									],
+									[
+										22604,
+										22618
+									],
+									[
+										22838,
+										22852
+									],
+									[
+										23138,
+										23152
+									],
+									[
+										23396,
+										23410
+									],
+									[
+										23624,
+										23638
+									],
+									[
+										23864,
+										23878
+									],
+									[
+										24129,
+										24143
+									],
+									[
+										24295,
+										24309
+									],
+									[
+										24446,
+										24460
+									],
+									[
+										24712,
+										24726
+									],
+									[
+										24993,
+										25007
+									],
+									[
+										25252,
+										25266
+									],
+									[
+										25542,
+										25556
+									],
+									[
+										25732,
+										25746
+									],
+									[
+										26012,
+										26026
+									],
+									[
+										26272,
+										26286
+									],
+									[
+										26546,
+										26560
+									],
+									[
+										26796,
+										26810
+									],
+									[
+										26977,
+										26991
+									],
+									[
+										27296,
+										27310
+									],
+									[
+										27602,
+										27616
+									],
+									[
+										27866,
+										27880
+									],
+									[
+										28140,
+										28154
+									],
+									[
+										28405,
+										28419
+									],
+									[
+										28669,
+										28683
+									],
+									[
+										28938,
+										28952
+									],
+									[
+										29217,
+										29231
+									],
+									[
+										29515,
+										29529
+									],
+									[
+										29821,
+										29835
+									],
+									[
+										30136,
+										30150
+									],
+									[
+										30419,
+										30433
+									],
+									[
+										30667,
+										30681
+									],
+									[
+										30898,
+										30912
+									],
+									[
+										31131,
+										31145
+									],
+									[
+										31440,
+										31454
+									],
+									[
+										31619,
+										31633
+									],
+									[
+										31969,
+										31983
+									],
+									[
+										32215,
+										32229
+									],
+									[
+										32331,
+										32345
+									],
+									[
+										32642,
+										32656
+									],
+									[
+										32979,
+										32993
+									],
+									[
+										33286,
+										33300
+									],
+									[
+										33527,
+										33541
+									],
+									[
+										33820,
+										33834
+									],
+									[
+										34052,
+										34066
+									],
+									[
+										34348,
+										34362
+									],
+									[
+										34638,
+										34652
+									],
+									[
+										34972,
+										34986
+									],
+									[
+										35266,
+										35280
+									],
+									[
+										35510,
+										35524
+									],
+									[
+										35756,
+										35770
+									],
+									[
+										36012,
+										36026
+									],
+									[
+										36189,
+										36203
+									],
+									[
+										36547,
+										36561
+									],
+									[
+										36764,
+										36778
+									],
+									[
+										36985,
+										36999
+									],
+									[
+										37358,
+										37368
+									],
+									[
+										37577,
+										37587
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								37351,
+								37351
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/peterorum/Projects/functalapp",
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 15708.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2477,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4265,
-								4265
+								1970,
+								1970
 							]
 						],
 						"settings":
@@ -1208,27 +1890,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 542.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "www/templates/help.html",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "www/js/controllers.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3082,
+						"buffer_size": 10444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1974,
-								1974
+								163,
+								173
 							]
 						],
 						"settings":
@@ -1236,8 +1918,8 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1245,72 +1927,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/templates/images.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3038,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1015,
-								1015
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 499,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								286,
-								286
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1381,6 +1997,14 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"config.xml"
+			],
+			[
+				"help",
+				"www/templates/help.html"
+			],
+			[
 				"sty",
 				"www/css/style.css"
 			],
@@ -1403,10 +2027,6 @@
 			[
 				"index",
 				"www/index.html"
-			],
-			[
-				"con",
-				"config.xml"
 			],
 			[
 				"sy",
@@ -1643,7 +2263,7 @@
 		[
 			[
 				"",
-				"~/Projects/functal/functal.sublime-project"
+				"~/Projects/peterorum.com/peterorum.sublime-project"
 			],
 			[
 				"book",
