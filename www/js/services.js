@@ -16,6 +16,10 @@
             return $http.jsonp(functalData.server + '/getimages?callback=JSON_CALLBACK');
         };
 
+        functalData.setImageCount = function(count) {
+            functalData.imageCount = count;
+        };
+
         functalData.vote = function(image, like, dislike)
         {
             return $http.jsonp(functalData.server + '/vote?callback=JSON_CALLBACK',

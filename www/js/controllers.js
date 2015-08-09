@@ -25,6 +25,8 @@
 
           vm.images = result.data.images;
 
+          functalData.setImageCount(vm.images.length);
+
           // set votes
           var myLikes = $localStorage.getObject('likes', []);
           var myDislikes = $localStorage.getObject('dislikes', []);
@@ -34,7 +36,6 @@
             if (R.find(function(v) {
 
                 return v === img.name;
-
               }, myLikes)) {
 
               img.vote = 'like';
@@ -43,7 +44,6 @@
             if (R.find(function(v) {
 
                 return v === img.name;
-
               }, myDislikes)) {
 
               img.vote = 'dislike';
@@ -93,9 +93,7 @@
         return R.filter(function(img) {
 
           return img.vote !== 'disliked' && img.likes >= img.dislikes;
-
         }, vm.images);
-
       };
 
       // periodic remove unnecessary dislikes
@@ -112,10 +110,8 @@
 
           return !!R.find(function(i) {
 
-              return i.name === n;
-
-            }, images);
-
+            return i.name === n;
+          }, images);
         }, votes);
 
         votes = R.uniq(votes);
@@ -163,7 +159,6 @@
           }
 
           return compare;
-
         }, vm.images);
 
         vm.gotoTop();
@@ -387,7 +382,6 @@
             myLikes = R.filter(function(i) {
 
               return i.name !== image.name;
-
             }, myLikes);
           }
           else {
@@ -402,7 +396,6 @@
             myDislikes = R.filter(function(i) {
 
               return i.name !== image.name;
-
             }, myDislikes);
 
           }
@@ -428,7 +421,6 @@
             myDislikes = R.filter(function(i) {
 
               return i.name !== image.name;
-
             }, myDislikes);
           }
           else {
@@ -443,7 +435,6 @@
             myLikes = R.filter(function(i) {
 
               return i.name !== image.name;
-
             }, myLikes);
           }
         }
@@ -489,4 +480,15 @@
       getImages();
     }
   ]);
+
+  module.controller('HelpCtrl', ['functalData',
+    function(functalData) {
+
+      var vm = this;
+
+      vm.imageCount = function() {
+        return functalData.imageCount;
+      };
+
+    }]);
 })();

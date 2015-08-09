@@ -64,7 +64,8 @@
                 {
                     'menuContent':
                     {
-                        templateUrl: 'templates/help.html'
+                        templateUrl: 'templates/help.html',
+                        controller: 'HelpCtrl as help'
                     }
                 }
             });
