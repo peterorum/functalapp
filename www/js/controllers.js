@@ -7,8 +7,8 @@
 
   module.controller('AppCtrl', [function() {}]);
 
-  module.controller('ImagesCtrl', ['functalData', '$window', '$timeout', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
-    function(functalData, $window, $timeout, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
+  module.controller('ImagesCtrl', ['functalData', '$scope', '$window', '$timeout', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
+    function(functalData, $scope, $window, $timeout, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
 
       var vm = this;
 
@@ -182,7 +182,7 @@
 
         console.log('showmore', vm.showCount);
 
-        vm.$broadcast('scroll.infiniteScrollComplete');
+        $scope.$broadcast('scroll.infiniteScrollComplete');
 
         updateImages();
       };
