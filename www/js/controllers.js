@@ -25,8 +25,6 @@
 
           vm.images = result.data.images;
 
-          functalData.setImageCount(vm.images.length);
-
           // set votes
           var myLikes = $localStorage.getObject('likes', []);
           var myDislikes = $localStorage.getObject('dislikes', []);
@@ -53,6 +51,8 @@
           sort();
 
           $localStorage.setObject('images', vm.images);
+
+          functalData.setImageCount(vm.images.length);
 
           $ionicLoading.hide();
 
