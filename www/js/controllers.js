@@ -54,15 +54,14 @@
 
           functalData.setImageCount(vm.images.length);
 
-          $ionicLoading.hide();
-
         }, function() {
 
           // error
           sort();
 
+        }).finally(function(){
+          $scope.$broadcast('scroll.refreshComplete');
           $ionicLoading.hide();
-
         });
       };
 
@@ -213,6 +212,12 @@
 
         updateImages();
 
+      };
+
+      // pull to refresh
+
+      vm.doRefresh = function(){
+        getImages();
       };
 
       // ---------------- save to camera roll
