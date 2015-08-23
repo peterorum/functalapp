@@ -23,43 +23,46 @@
 
         functalData.getImages().then(function(result) {
 
-          vm.images = result.data.images;
+          if (result.data.images && result.data.images.length) {
 
-          // set votes
-          var myLikes = $localStorage.getObject('likes', []);
-          var myDislikes = $localStorage.getObject('dislikes', []);
+            vm.images = result.data.images;
 
-          R.forEach(function(img) {
+            // set votes
+            var myLikes = $localStorage.getObject('likes', []);
+            var myDislikes = $localStorage.getObject('dislikes', []);
 
-            if (R.find(function(v) {
+            R.forEach(function(img) {
 
-                return v === img.name;
-              }, myLikes)) {
+              if (R.find(function(v) {
 
-              img.vote = 'like';
-            }
+                  return v === img.name;
+                }, myLikes)) {
 
-            if (R.find(function(v) {
+                img.vote = 'like';
+              }
 
-                return v === img.name;
-              }, myDislikes)) {
+              if (R.find(function(v) {
 
-              img.vote = 'dislike';
-            }
-          }, vm.images);
+                  return v === img.name;
+                }, myDislikes)) {
 
-          sort();
+                img.vote = 'dislike';
+              }
+            }, vm.images);
 
-          $localStorage.setObject('images', vm.images);
+            sort();
 
-          functalData.setImageCount(vm.images.length);
+            $localStorage.setObject('images', vm.images);
+
+            functalData.setImageCount(vm.images.length);
+          }
 
         }, function() {
 
           // error
           sort();
 
-        }).finally(function(){
+        }).finally(function() {
           $scope.$broadcast('scroll.refreshComplete');
           $ionicLoading.hide();
         });
@@ -91,7 +94,7 @@
 
         return R.filter(function(img) {
 
-          return img.vote !== 'disliked' && img.likes >= img.dislikes;
+          return img.vote !== 'disliked' && (typeof img.likes === 'undefined' || img.likes >= img.dislikes);
         }, vm.images);
       };
 
@@ -216,7 +219,7 @@
 
       // pull to refresh
 
-      vm.doRefresh = function(){
+      vm.doRefresh = function() {
         getImages();
       };
 
