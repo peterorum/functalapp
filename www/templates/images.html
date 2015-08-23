@@ -10,6 +10,7 @@
                 <div>
                     <img class="img-responsive" ng-src="{{vm.cdn}}{{image.name}}" />
                 </div>
+                <div>{{image.title}}</div>
                 <div class='text-left fa-actions'>
                     <div>
                         <span class='icon-large ion-ios-download-outline' ng-show='! image.saved' ng-click='vm.save(image);'></span>
