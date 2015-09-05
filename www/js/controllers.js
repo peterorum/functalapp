@@ -346,7 +346,15 @@
 
             var imageUrl = vm.cdn + image.name;
 
-            $cordovaSocialSharing.share("#functal", null, imageUrl, null).then(function(result) {
+            var msg = '#functal';
+
+            if (image.title){
+              msg = '"' + image.title + '" ' + msg;
+            }
+
+            msg = msg + '#functal';
+
+            $cordovaSocialSharing.share(msg, null, imageUrl, null).then(function(result) {
 
               $ionicLoading.hide();
               image.status = '';
