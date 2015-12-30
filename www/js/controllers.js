@@ -1,516 +1,529 @@
 (function() {
 
-  "use strict";
+    "use strict";
 
 
-  var module = angular.module('functal.controllers', []);
+    var module = angular.module('functal.controllers', []);
 
-  module.controller('AppCtrl', [function() {}]);
+    module.controller('AppCtrl', [function() {}]);
 
-  module.controller('ImagesCtrl', ['functalData', '$scope', '$window', '$timeout', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
-    function(functalData, $scope, $window, $timeout, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
+    module.controller('ImagesCtrl', ['functalData', '$scope', '$window', '$timeout', '$ionicScrollDelegate', '$ionicLoading', '$cordovaSocialSharing', '$localStorage', '$debounce', '$ionicSideMenuDelegate',
+        function(functalData, $scope, $window, $timeout, $ionicScrollDelegate, $ionicLoading, $cordovaSocialSharing, $localStorage, $debounce, $ionicSideMenuDelegate) {
 
-      var vm = this;
+            var vm = this;
 
-      //--- get images
+            var defaultImageCount = 100;
 
-      var getImages = function() {
+            //--- get images
 
-        if (! vm.images || vm.images.length === 0) {
-        $ionicLoading.show(
-          {
-            template: 'loading...'
-          });
-        }
+            var getImages = function(count) {
 
-        functalData.getImages().then(function(result) {
+                if (!vm.images || vm.images.length === 0) {
+                    $ionicLoading.show(
+                        {
+                            template: 'loading...'
+                        });
+                }
 
-          console.log('loaded');
-          if (result.data.images && result.data.images.length) {
+                // if in New, only returns new images, otherwise returns a random selection
 
-          console.log('result.data.images.length ' , result.data.images.length);
+                functalData.getImages(count, vm.sorting.sortBy).then(function(result) {
 
+                    console.log('loaded');
 
-            vm.images = result.data.images;
+                    if (result.data.images && result.data.images.length) {
 
-            // set votes
-            var myLikes = $localStorage.getObject('likes', []);
-            var myDislikes = $localStorage.getObject('dislikes', []);
+                        console.log('result.data.images.length ', result.data.images.length);
 
-            R.forEach(function(img) {
+                        if (!count) {
+                            // replace all
+                            vm.images = result.data.images;
+                        }
+                        else {
+                            // append
+                            vm.images = R.unionWith(function(x, y) {
+                                return x.name === y.name;
+                            }, vm.images, result.data.images);
+                        }
 
-              if (R.find(function(v) {
+                        // set votes
+                        var myLikes = $localStorage.getObject('likes', []);
+                        var myDislikes = $localStorage.getObject('dislikes', []);
 
-                  return v === img.name;
-                }, myLikes)) {
+                        R.forEach(function(img) {
 
-                img.vote = 'like';
-              }
+                            if (R.find(function(v) {
 
-              if (R.find(function(v) {
+                                    return v === img.name;
+                                }, myLikes)) {
 
-                  return v === img.name;
-                }, myDislikes)) {
+                                img.vote = 'like';
+                            }
 
-                img.vote = 'dislike';
-              }
-            }, vm.images);
+                            if (R.find(function(v) {
 
-            sort();
+                                    return v === img.name;
+                                }, myDislikes)) {
 
-            $localStorage.setObject('images', vm.images);
+                                img.vote = 'dislike';
+                            }
+                        }, vm.images);
 
-            functalData.setImageCount(vm.images.length);
-          }
+                        sort();
 
-        }, function() {
+                        $localStorage.setObject('images', vm.images);
 
-          // error
-          sort();
+                        functalData.setImageCount(vm.images.length);
+                    }
 
-        }).finally(function() {
-          $scope.$broadcast('scroll.refreshComplete');
-          $ionicLoading.hide();
-        });
-      };
+                }, function() {
 
-      // get new images after 5 minutes idle
-      var updateImages = $debounce.debounce(
-        function() {
+                    // error
+                    sort();
 
-          getImages();
-          cleanVotes('likes');
-          cleanVotes('dislikes');
+                }).finally(function() {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    $ionicLoading.hide();
+                });
+            };
 
-        }, 5 * 60000);
+            // get new images after 5 minutes idle
+            var updateImages = $debounce.debounce(
+                function() {
 
-      //--- clear status after a while
+                    getImages();
+                    cleanVotes('likes');
+                    cleanVotes('dislikes');
 
-      var clearStatus = function(image) {
+                }, 5 * 60000);
 
-        $timeout(function() {
+            //--- clear status after a while
 
-          image.status = '';
-        }, 3000);
-      };
+            var clearStatus = function(image) {
 
-      //--- purge
+                $timeout(function() {
 
-      var purgeDisliked = function() {
+                    image.status = '';
+                }, 3000);
+            };
 
-        return R.filter(function(img) {
+            //--- purge
 
-          return img.vote !== 'disliked' && (typeof img.likes === 'undefined' || img.likes >= img.dislikes);
-        }, vm.images);
-      };
+            var purgeDisliked = function() {
 
-      // periodic remove unnecessary dislikes
+                return R.filter(function(img) {
 
-      var cleanVotes = function(vote) {
+                    return img.vote !== 'disliked' && (typeof img.likes === 'undefined' || img.likes >= img.dislikes);
+                }, vm.images);
+            };
 
-        // just keep those that are still around
+            // periodic remove unnecessary dislikes
 
-        // vote is 'like' or 'dislikes'
+            var cleanVotes = function(vote) {
 
-        var votes = $localStorage.getObject(vote, []);
+                // just keep those that are still around
 
-        votes = R.filter(function(n) {
+                // vote is 'like' or 'dislikes'
 
-          return !!R.find(function(i) {
+                var votes = $localStorage.getObject(vote, []);
 
-            return i.name === n;
-          }, images);
-        }, votes);
+                votes = R.filter(function(n) {
 
-        votes = R.uniq(votes);
+                    return !!R.find(function(i) {
 
-        $localStorage.setObject(vote, votes);
-      };
+                        return i.name === n;
+                    }, images);
+                }, votes);
 
-      //--- sort
+                votes = R.uniq(votes);
 
-      var sort = function() {
+                $localStorage.setObject(vote, votes);
+            };
 
-        vm.images = purgeDisliked();
+            //--- sort
 
-        vm.images = R.sort(function(a, b) {
+            var sort = function() {
 
-          var compare;
+                vm.images = purgeDisliked();
 
-          switch (vm.sorting.sortBy) {
+                vm.images = R.sort(function(a, b) {
 
-            case 'new':{
-              compare = -(a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+                    var compare;
 
-              break;
-              }
+                    switch (vm.sorting.sortBy) {
 
-            case 'popular':{
-              var avotes = a.likes - a.dislikes;
-              var bvotes = b.likes - b.dislikes;
+                        case 'new':{
+                            compare = -(a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
 
-              compare = -(avotes < bvotes ? -1 : avotes > bvotes ? 1 : 0);
+                            break;
+                            }
 
-              break;
-              }
+                        case 'popular':{
+                            var avotes = a.likes - a.dislikes;
+                            var bvotes = b.likes - b.dislikes;
 
-            case 'shuffle':{
-              compare = Math.random() < 0.5 ? -1 : 1;
+                            compare = -(avotes < bvotes ? -1 : avotes > bvotes ? 1 : 0);
 
-              break;
-              }
-          }
+                            break;
+                            }
 
-          if (vm.sorting.desc) {
+                        case 'shuffle':{
+                            compare = Math.random() < 0.5 ? -1 : 1;
 
-            compare = -compare;
-          }
+                            break;
+                            }
+                    }
 
-          return compare;
-        }, vm.images);
+                    if (vm.sorting.desc) {
 
-        vm.gotoTop();
-      };
+                        compare = -compare;
+                    }
 
-      //--- goto top of screen
+                    return compare;
+                }, vm.images);
 
-      vm.gotoTop = function() {
+                vm.gotoTop();
+            };
 
-        $window.location.href = '#top';
+            //--- goto top of screen
 
-        updateImages();
+            vm.gotoTop = function() {
 
-      };
+                $window.location.href = '#top';
 
-      //--- infinite scroll
+                updateImages();
 
-      vm.showMore = function() {
+            };
 
-        vm.showCount += 4;
+            //--- infinite scroll
 
-        console.log('showmore', vm.showCount);
+            vm.showMore = function() {
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+                vm.showCount += 4;
 
-        updateImages();
-      };
+                console.log('showmore', vm.showCount);
 
-      //--- user sort
+                $scope.$broadcast('scroll.infiniteScrollComplete');
 
-      vm.sortBy = function(sorter) {
+                updateImages();
+            };
 
-        if (sorter === vm.sorting.sortBy) {
+            //--- user sort
 
-          vm.sorting.desc = !vm.sorting.desc;
-        }
-        else {
+            vm.sortBy = function(sorter) {
 
-          vm.sorting.desc = false;
-        }
+                if (sorter === vm.sorting.sortBy) {
 
-        vm.sorting.sortBy = sorter;
+                    vm.sorting.desc = !vm.sorting.desc;
+                }
+                else {
 
+                    vm.sorting.desc = false;
+                }
 
-        $localStorage.setObject('sorting', vm.sorting);
+                vm.sorting.sortBy = sorter;
 
-        sort();
 
-        vm.showCount = 6;
+                $localStorage.setObject('sorting', vm.sorting);
 
-        $ionicScrollDelegate.scrollTop();
+                sort();
 
-        updateImages();
+                vm.showCount = 6;
 
-      };
+                $ionicScrollDelegate.scrollTop();
 
-      // pull to refresh
+                updateImages();
 
-      vm.doRefresh = function() {
-        getImages();
-      };
+            };
 
-      // ---------------- save to camera roll
+            // pull to refresh
 
-      var saveToCameraRoll = function(base64DataURL, image) {
+            vm.doRefresh = function() {
+                getImages(defaultImageCount);
+            };
 
-        CameraRoll.saveToCameraRoll(base64DataURL, function() {
+            // ---------------- save to camera roll
 
-          image.saved = true;
-          image.status = 'saved to your photos';
-          clearStatus(image);
-          vm.$apply();
+            var saveToCameraRoll = function(base64DataURL, image) {
 
-        }, function(err) {
+                CameraRoll.saveToCameraRoll(base64DataURL, function() {
 
-          image.error = 'Error : ' + err;
-          vm.$apply();
+                    image.saved = true;
+                    image.status = 'saved to your photos';
+                    clearStatus(image);
+                    vm.$apply();
 
-        });
-      };
+                }, function(err) {
 
-      vm.save = function(image) {
+                    image.error = 'Error : ' + err;
+                    vm.$apply();
 
-        image.status = 'saving to your photos...';
+                });
+            };
 
-        var url = vm.cdn + image.name;
+            vm.save = function(image) {
 
-        convertImgToBase64URL(url, function(base64DataURL, err) {
+                image.status = 'saving to your photos...';
 
-          if (err) {
+                var url = vm.cdn + image.name;
 
-            // could be cors - try s3
+                convertImgToBase64URL(url, function(base64DataURL, err) {
 
-            console.log('cdn error', err);
+                    if (err) {
 
-            url = vm.s3 + image.name;
+                        // could be cors - try s3
 
-            convertImgToBase64URL(url, function(base64DataURL, err) {
+                        console.log('cdn error', err);
 
-              if (err) {
+                        url = vm.s3 + image.name;
 
-                console.log('s3 error', err);
-                image.error = "Sorry - a system error prevented saving.";
-              }
-              else {
+                        convertImgToBase64URL(url, function(base64DataURL, err) {
 
-                saveToCameraRoll(base64DataURL, image);
-              }
-            }, 'image/jpeg');
-          }
-          else {
+                            if (err) {
 
-            saveToCameraRoll(base64DataURL, image);
-          }
+                                console.log('s3 error', err);
+                                image.error = "Sorry - a system error prevented saving.";
+                            }
+                            else {
 
+                                saveToCameraRoll(base64DataURL, image);
+                            }
+                        }, 'image/jpeg');
+                    }
+                    else {
 
-        }, 'image/jpeg');
+                        saveToCameraRoll(base64DataURL, image);
+                    }
 
-        updateImages();
 
-      };
+                }, 'image/jpeg');
 
-      /**
-       * Convert an image
-       * to a base64 url
-       * @param  {String}   url
-       * @param  {Function} callback
-       * @param  {String}   [outputFormat=image/jpeg]
-       * http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
-       */
+                updateImages();
 
-      // cors test example
-      // curl -sI -H "Origin: codeindeed.com" -H "Access-Control-Request-Method: GET" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg
+            };
 
-      function convertImgToBase64URL(url, callback, outputFormat) {
+            /**
+             * Convert an image
+             * to a base64 url
+             * @param  {String}   url
+             * @param  {Function} callback
+             * @param  {String}   [outputFormat=image/jpeg]
+             * http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
+             */
 
-        var img = new Image();
-        img.crossOrigin = 'Anonymous';
+            // cors test example
+            // curl -sI -H "Origin: codeindeed.com" -H "Access-Control-Request-Method: GET" https://d1aienjtp63qx3.cloudfront.net/functal-20150610070410687.jpg
 
-        img.onload = function() {
+            function convertImgToBase64URL(url, callback, outputFormat) {
 
-          var canvas = document.createElement('CANVAS'),
-            ctx = canvas.getContext('2d'),
-            dataURL;
+                var img = new Image();
+                img.crossOrigin = 'Anonymous';
 
-          canvas.height = img.height;
-          canvas.width = img.width;
+                img.onload = function() {
 
-          ctx.drawImage(img, 0, 0);
+                    var canvas = document.createElement('CANVAS'),
+                        ctx = canvas.getContext('2d'),
+                        dataURL;
 
-          dataURL = canvas.toDataURL(outputFormat);
+                    canvas.height = img.height;
+                    canvas.width = img.width;
 
-          callback(dataURL);
+                    ctx.drawImage(img, 0, 0);
 
-          canvas = null;
-        };
+                    dataURL = canvas.toDataURL(outputFormat);
 
-        img.onerror = function(e) {
+                    callback(dataURL);
 
-          console.log("img error", e);
-          callback(null, e);
-        };
+                    canvas = null;
+                };
 
-        img.onabort = img.onerror;
+                img.onerror = function(e) {
 
-        img.src = url;
-      }
+                    console.log("img error", e);
+                    callback(null, e);
+                };
 
-      //-------------- sharing
+                img.onabort = img.onerror;
 
-      vm.shareAnywhere = function(image) {
-
-        if (!/sharing/.test(image.status)) {
-
-          image.status = 'loading sharing...';
-
-          $ionicLoading.show(
-            {
-              template: 'share...'
-            });
-
-          $timeout(function() {
-
-            var imageUrl = vm.cdn + image.name;
-
-            var msg = '#functal';
-
-            if (image.title){
-              msg = '"' + image.title + '" ' + msg;
+                img.src = url;
             }
 
-            msg = msg + '#functal';
+            //-------------- sharing
 
-            $cordovaSocialSharing.share(msg, null, imageUrl, null).then(function(result) {
+            vm.shareAnywhere = function(image) {
 
-              $ionicLoading.hide();
-              image.status = '';
-              console.log('sharing result', result);
-            }, function(err) {
+                if (!/sharing/.test(image.status)) {
 
-              $ionicLoading.hide();
-              image.status = '';
-              console.log('sharing error', err);
-            });
-          }, 0);
+                    image.status = 'loading sharing...';
+
+                    $ionicLoading.show(
+                        {
+                            template: 'share...'
+                        });
+
+                    $timeout(function() {
+
+                        var imageUrl = vm.cdn + image.name;
+
+                        var msg = '#functal';
+
+                        if (image.title) {
+                            msg = '"' + image.title + '" ' + msg;
+                        }
+
+                        msg = msg + '#functal';
+
+                        $cordovaSocialSharing.share(msg, null, imageUrl, null).then(function(result) {
+
+                            $ionicLoading.hide();
+                            image.status = '';
+                            console.log('sharing result', result);
+                        }, function(err) {
+
+                            $ionicLoading.hide();
+                            image.status = '';
+                            console.log('sharing error', err);
+                        });
+                    }, 0);
+                }
+            };
+
+            //-------------- sharing
+
+            vm.vote = function(image, isLike) {
+
+                var like, dislike;
+
+                var myLikes = $localStorage.getObject('likes', []);
+                var myDislikes = $localStorage.getObject('dislikes', []);
+
+                if (isLike) {
+
+                    if (!image.vote) {
+
+                        // new
+                        image.vote = 'like';
+                        like = 1;
+                        dislike = 0;
+
+                        myLikes.push(image.name);
+                    } else if (image.vote === 'like') {
+
+                        // unvote
+                        image.vote = '';
+                        like = -1;
+                        dislike = 0;
+
+                        myLikes = R.filter(function(i) {
+
+                            return i.name !== image.name;
+                        }, myLikes);
+                    }
+                    else {
+
+                        // change
+                        image.vote = 'like';
+                        like = 1;
+                        dislike = -1;
+
+                        myLikes.push(image.name);
+
+                        myDislikes = R.filter(function(i) {
+
+                            return i.name !== image.name;
+                        }, myDislikes);
+
+                    }
+                }
+                else // dislike
+                {
+
+                    if (!image.vote) {
+
+                        // new
+                        image.vote = 'dislike';
+                        like = 0;
+                        dislike = 1;
+
+                        myDislikes.push(image.name);
+                    } else if (image.vote === 'dislike') {
+
+                        // unvote
+                        image.vote = '';
+                        like = 0;
+                        dislike = -1;
+
+                        myDislikes = R.filter(function(i) {
+
+                            return i.name !== image.name;
+                        }, myDislikes);
+                    }
+                    else {
+
+                        // change
+                        image.vote = 'dislike';
+                        like = -1;
+                        dislike = 1;
+
+                        myDislikes.push(image.name);
+
+                        myLikes = R.filter(function(i) {
+
+                            return i.name !== image.name;
+                        }, myLikes);
+                    }
+                }
+
+                $localStorage.setObject('likes', myLikes);
+                $localStorage.setObject('dislikes', myDislikes);
+
+                // local update
+                image.likes = Math.max(0, image.likes + like);
+                image.dislikes = Math.max(0, image.dislikes + dislike);
+
+                functalData.vote(image, like, dislike).then(function(result) {
+
+                    if (result.status === 'ok') {
+
+                        // db update
+                        images.likes = result.likes;
+                        images.dislikes = result.dislikes;
+                    }
+
+                }, function() {
+
+                    // error
+                });
+
+            };
+
+            //----------------- init
+
+            vm.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
+            vm.s3 = 'https://s3.amazonaws.com/functal-images/';
+
+            vm.showCount = 6;
+
+            vm.images = $localStorage.getObject('images', []);
+
+            vm.sorting = $localStorage.getObject('sorting',
+                {
+                    sortBy: 'shuffle',
+                    desc: true
+                });
+
+            getImages(defaultImageCount);
         }
-      };
+    ]);
 
-      //-------------- sharing
+    module.controller('HelpCtrl', ['functalData',
+        function(functalData) {
 
-      vm.vote = function(image, isLike) {
+            var vm = this;
 
-        var like, dislike;
+            vm.imageCount = function() {
+                return functalData.imageCount;
+            };
 
-        var myLikes = $localStorage.getObject('likes', []);
-        var myDislikes = $localStorage.getObject('dislikes', []);
-
-        if (isLike) {
-
-          if (!image.vote) {
-
-            // new
-            image.vote = 'like';
-            like = 1;
-            dislike = 0;
-
-            myLikes.push(image.name);
-          } else if (image.vote === 'like') {
-
-            // unvote
-            image.vote = '';
-            like = -1;
-            dislike = 0;
-
-            myLikes = R.filter(function(i) {
-
-              return i.name !== image.name;
-            }, myLikes);
-          }
-          else {
-
-            // change
-            image.vote = 'like';
-            like = 1;
-            dislike = -1;
-
-            myLikes.push(image.name);
-
-            myDislikes = R.filter(function(i) {
-
-              return i.name !== image.name;
-            }, myDislikes);
-
-          }
-        }
-        else // dislike
-        {
-
-          if (!image.vote) {
-
-            // new
-            image.vote = 'dislike';
-            like = 0;
-            dislike = 1;
-
-            myDislikes.push(image.name);
-          } else if (image.vote === 'dislike') {
-
-            // unvote
-            image.vote = '';
-            like = 0;
-            dislike = -1;
-
-            myDislikes = R.filter(function(i) {
-
-              return i.name !== image.name;
-            }, myDislikes);
-          }
-          else {
-
-            // change
-            image.vote = 'dislike';
-            like = -1;
-            dislike = 1;
-
-            myDislikes.push(image.name);
-
-            myLikes = R.filter(function(i) {
-
-              return i.name !== image.name;
-            }, myLikes);
-          }
-        }
-
-        $localStorage.setObject('likes', myLikes);
-        $localStorage.setObject('dislikes', myDislikes);
-
-        // local update
-        image.likes = Math.max(0, image.likes + like);
-        image.dislikes = Math.max(0, image.dislikes + dislike);
-
-        functalData.vote(image, like, dislike).then(function(result) {
-
-          if (result.status === 'ok') {
-
-            // db update
-            images.likes = result.likes;
-            images.dislikes = result.dislikes;
-          }
-
-        }, function() {
-
-          // error
-        });
-
-      };
-
-      //----------------- init
-
-      vm.cdn = 'https://d1aienjtp63qx3.cloudfront.net/';
-      vm.s3 = 'https://s3.amazonaws.com/functal-images/';
-
-      vm.showCount = 6;
-
-      vm.images = $localStorage.getObject('images', []);
-
-      vm.sorting = $localStorage.getObject('sorting',
-        {
-          sortBy: 'shuffle',
-          desc: true
-        });
-
-      getImages();
-    }
-  ]);
-
-  module.controller('HelpCtrl', ['functalData',
-    function(functalData) {
-
-      var vm = this;
-
-      vm.imageCount = function() {
-        return functalData.imageCount;
-      };
-
-    }]);
+        }]);
 })();

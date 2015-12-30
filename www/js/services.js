@@ -1,5 +1,4 @@
-(function()
-{
+(function() {
     "use strict";
 
     // add to Daily Functal-info.plist
@@ -24,36 +23,41 @@
 
     var module = angular.module('functal.services', []);
 
-    module.factory('functalData', ['$http', '$q', function($http, $q)
-    {
+    module.factory('functalData', ['$http', '$q', function($http, $q) {
         var functalData = {};
 
         functalData.server = 'http://functalserver.codeindeed.com:8083';
         // functalData.server = 'http://localhost:8083';
 
-        functalData.getImages = function()
-        {
-            return $http.jsonp(functalData.server + '/getimages?callback=JSON_CALLBACK');
+        functalData.getImages = function(count, sortBy) {
+            count = count || 0;
+
+            return $http.jsonp(functalData.server + '/getimages?callback=JSON_CALLBACK',
+                {
+                    params: {
+                        data: {
+                            count: count,
+                            sortBy: sortBy
+                        }
+                    }
+                });
         };
 
         functalData.setImageCount = function(count) {
             functalData.imageCount = count;
         };
 
-        functalData.vote = function(image, like, dislike)
-        {
+        functalData.vote = function(image, like, dislike) {
             return $http.jsonp(functalData.server + '/vote?callback=JSON_CALLBACK',
-            {
-                params:
                 {
-                    data:
-                    {
-                        name: image.name,
-                        like: like,
-                        dislike: dislike
+                    params: {
+                        data: {
+                            name: image.name,
+                            like: like,
+                            dislike: dislike
+                        }
                     }
-                }
-            });
+                });
         };
 
         return functalData;
