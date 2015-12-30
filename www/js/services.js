@@ -2,6 +2,26 @@
 {
     "use strict";
 
+    // add to Daily Functal-info.plist
+
+    /*
+
+      <key>NSAppTransportSecurity</key>
+      <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+          <key>codeindeed.com</key>
+          <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+          </dict>
+        </dict>
+      </dict>
+
+    */
+
     var module = angular.module('functal.services', []);
 
     module.factory('functalData', ['$http', '$q', function($http, $q)

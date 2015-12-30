@@ -16,14 +16,20 @@
 
       var getImages = function() {
 
-        // $ionicLoading.show(
-        //   {
-        //     template: 'loading...'
-        //   });
+        if (! vm.images || vm.images.length === 0) {
+        $ionicLoading.show(
+          {
+            template: 'loading...'
+          });
+        }
 
         functalData.getImages().then(function(result) {
 
+          console.log('loaded');
           if (result.data.images && result.data.images.length) {
+
+          console.log('result.data.images.length ' , result.data.images.length);
+
 
             vm.images = result.data.images;
 
@@ -64,7 +70,7 @@
 
         }).finally(function() {
           $scope.$broadcast('scroll.refreshComplete');
-          // $ionicLoading.hide();
+          $ionicLoading.hide();
         });
       };
 
