@@ -32,7 +32,7 @@
                         // append
                         vm.images = R.unionWith(function(x, y) {
                             return x.name === y.name;
-                        }, vm.images || {}, result.data.images);
+                        }, vm.images || [], result.data.images);
 
                         // set votes
                         var myLikes = $localStorage.getObject('likes', []);
