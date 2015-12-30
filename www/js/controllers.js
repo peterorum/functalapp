@@ -16,35 +16,23 @@
 
             //--- get images
 
-            var getImages = function(count) {
+            var getImages = function() {
 
-                if (!vm.images || vm.images.length === 0) {
-                    $ionicLoading.show(
-                        {
-                            template: 'loading...'
-                        });
-                }
+                $ionicLoading.show(
+                    {
+                        template: 'loading...'
+                    });
 
                 // if in New, only returns new images, otherwise returns a random selection
 
-                functalData.getImages(count, vm.sorting.sortBy).then(function(result) {
-
-                    console.log('loaded');
+                functalData.getImages(defaultImageCount, vm.sorting.sortBy).then(function(result) {
 
                     if (result.data.images && result.data.images.length) {
 
-                        console.log('result.data.images.length ', result.data.images.length);
-
-                        if (!count) {
-                            // replace all
-                            vm.images = result.data.images;
-                        }
-                        else {
-                            // append
-                            vm.images = R.unionWith(function(x, y) {
-                                return x.name === y.name;
-                            }, vm.images, result.data.images);
-                        }
+                        // append
+                        vm.images = R.unionWith(function(x, y) {
+                            return x.name === y.name;
+                        }, vm.images || {}, result.data.images);
 
                         // set votes
                         var myLikes = $localStorage.getObject('likes', []);
@@ -201,8 +189,6 @@
 
                 vm.showCount += 4;
 
-                console.log('showmore', vm.showCount);
-
                 $scope.$broadcast('scroll.infiniteScrollComplete');
 
                 updateImages();
@@ -239,7 +225,7 @@
             // pull to refresh
 
             vm.doRefresh = function() {
-                getImages(defaultImageCount);
+                getImages();
             };
 
             // ---------------- save to camera roll
@@ -251,12 +237,12 @@
                     image.saved = true;
                     image.status = 'saved to your photos';
                     clearStatus(image);
-                    vm.$apply();
+                    $scope.$apply();
 
                 }, function(err) {
 
                     image.error = 'Error : ' + err;
-                    vm.$apply();
+                    $scope.$apply();
 
                 });
             };
@@ -512,7 +498,7 @@
                     desc: true
                 });
 
-            getImages(defaultImageCount);
+            getImages();
         }
     ]);
 
