@@ -16,10 +16,10 @@
 
       var getImages = function() {
 
-        $ionicLoading.show(
-          {
-            template: 'loading...'
-          });
+        // $ionicLoading.show(
+        //   {
+        //     template: 'loading...'
+        //   });
 
         functalData.getImages().then(function(result) {
 
@@ -64,7 +64,7 @@
 
         }).finally(function() {
           $scope.$broadcast('scroll.refreshComplete');
-          $ionicLoading.hide();
+          // $ionicLoading.hide();
         });
       };
 
