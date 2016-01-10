@@ -141,7 +141,7 @@
                     switch (vm.sorting.sortBy) {
 
                         case 'new':{
-                            compare = -(a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+                            compare = - (a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
 
                             break;
                             }
