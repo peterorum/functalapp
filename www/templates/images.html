@@ -5,7 +5,7 @@
     <ion-content class="padding text-center has-header">
     <ion-refresher pulling-text="Pull to refresh" on-refresh="vm.doRefresh()"></ion-refresher>
         <div id="top"></div>
-        <div class="list card" ng-repeat="image in vm.images | limitTo : vm.showCount">
+        <div class="list card" ng-repeat="image in vm.imageList() | limitTo : vm.showCount">
             <div class="item item-body">
                 <div>
                     <img class="img-responsive" ng-src="{{vm.cdn}}{{image.name}}" />

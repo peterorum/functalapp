@@ -173,6 +173,12 @@
                 vm.gotoTop();
             };
 
+            //--- current image list
+
+            vm.imageList = function() {
+                return vm.images;
+            }
+
             //--- goto top of screen
 
             vm.gotoTop = function() {
