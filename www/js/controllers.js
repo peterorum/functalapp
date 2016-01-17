@@ -25,7 +25,15 @@
 
                 // if in New, only returns new images, otherwise returns a random selection
 
-                functalData.getImages(defaultImageCount, vm.sorting.sortBy).then(function(result) {
+                var count = defaultImageCount;
+
+                // get all if running in browser
+                if (location && location.href && location.href.indexOf('localhost:8100') >= 0) {
+                    count = 100000;
+                    console.log('count', count);
+                }
+
+                functalData.getImages(count, vm.sorting.sortBy).then(function(result) {
 
                     if (result.data.images && result.data.images.length) {
 
