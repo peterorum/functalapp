@@ -88,8 +88,8 @@
                 function() {
 
                     getImages();
-                    cleanVotes('likes');
-                    cleanVotes('dislikes');
+                    // cleanVotes('likes');
+                    // cleanVotes('dislikes');
 
                 }, 5 * 60000);
 
@@ -109,32 +109,33 @@
 
                 return R.filter(function(img) {
 
-                    return img.vote !== 'disliked' && (typeof img.likes === 'undefined' || img.likes >= img.dislikes);
+                    return img.vote !== 'dislike' || typeof img.likes === 'undefined' || img.likes >= img.dislikes;
+
                 }, vm.images);
             };
 
             // periodic remove unnecessary dislikes
 
-            var cleanVotes = function(vote) {
+            // var cleanVotes = function(vote) {
 
-                // just keep those that are still around
+            //     // just keep those that are still around
 
-                // vote is 'like' or 'dislikes'
+            //     // vote is 'like' or 'dislikes'
 
-                var votes = $localStorage.getObject(vote, []);
+            //     var votes = $localStorage.getObject(vote, []);
 
-                votes = R.filter(function(n) {
+            //     votes = R.filter(function(n) {
 
-                    return !!R.find(function(i) {
+            //         return !!R.find(function(i) {
 
-                        return i.name === n;
-                    }, images);
-                }, votes);
+            //             return i.name === n;
+            //         }, images);
+            //     }, votes);
 
-                votes = R.uniq(votes);
+            //     votes = R.uniq(votes);
 
-                $localStorage.setObject(vote, votes);
-            };
+            //     $localStorage.setObject(vote, votes);
+            // };
 
             //--- sort
 
@@ -178,24 +179,21 @@
                     return compare;
                 }, vm.images);
 
-                vm.gotoTop();
+                gotoTop();
             };
+
+            //--- goto top of screen
+
+            function gotoTop() {
+                $window.location.href = '#top';
+            };
+
 
             //--- current image list
 
             vm.imageList = function() {
                 return vm.images;
             }
-
-            //--- goto top of screen
-
-            vm.gotoTop = function() {
-
-                $window.location.href = '#top';
-
-                updateImages();
-
-            };
 
             //--- infinite scroll
 
