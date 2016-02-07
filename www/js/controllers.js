@@ -109,7 +109,7 @@
 
                 return R.filter(function(img) {
 
-                    return img.vote !== 'dislike' || typeof img.likes === 'undefined' || img.likes >= img.dislikes;
+                    return ! (img.vote === 'dislike' || (typeof img.likes !== 'undefined' && img.likes < img.dislikes));
 
                 }, vm.images);
             };
@@ -150,7 +150,7 @@
                     switch (vm.sorting.sortBy) {
 
                         case 'new':{
-                            compare = - (a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
+                            compare = -(a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0);
 
                             break;
                             }
@@ -186,13 +186,24 @@
 
             function gotoTop() {
                 $window.location.href = '#top';
-            };
+            }
+            ;
 
 
             //--- current image list
 
             vm.imageList = function() {
-                return vm.images;
+
+                vm.imagesList = vm.imagesList || [];
+
+                // clear
+                vm.imagesList.length = 0;
+
+                vm.images.forEach(function(i) {
+                    vm.imagesList.push(i)
+                });
+
+                return vm.imagesList;
             }
 
             //--- infinite scroll
