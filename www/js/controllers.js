@@ -42,6 +42,20 @@
                             return x.name === y.name;
                         }, vm.images || [], result.data.images);
 
+                        // set captions
+                        R.forEach(function(img){
+
+                            var img1 = R.find(function(v) {
+                                return v.name === img.name;
+                            });
+
+                            if (img1) {
+                                img1.caption = img.caption;
+                            }
+
+                        }. result.data.images);
+
+
                         // set votes
                         var myLikes = $localStorage.getObject('likes', []);
                         var myDislikes = $localStorage.getObject('dislikes', []);
